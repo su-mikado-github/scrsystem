@@ -1,0 +1,13 @@
+@startuml
+title コントローラ
+
+class A <<controller>> {
+
+}
+
+class B {
+
+}
+
+A --> "n" B
+@enduml
