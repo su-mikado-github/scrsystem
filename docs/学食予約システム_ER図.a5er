@@ -9,12 +9,70 @@ ProjectName=学食予約システム
 Author=Shuji Ushiyama
 MaxEntityRowShow=1000
 ReadOnlyRecommend=0
-Page=Main
-PageInfo="Main",2,"A3Landscape",$FFFFFF
+Page=ユーザー管理
+PageInfo="ユーザー管理",7,"A3Landscape",$FFFFFF
+Page=予約管理
+PageInfo="予約管理",7,"A3Landscape",$FFFFFF
+Page=メニュー管理
+PageInfo="メニュー管理",7,"A3Landscape",$FFFFFF
+Page=システム
+PageInfo="システム",7,"A3Landscape",$FFFFFF
+Domain=自動ID=BIGINT AUTO_INCREMENT
+DomainInfo="自動ID","BIGINT AUTO_INCREMENT","",""
+Domain=ファイルID=BIGINT
+DomainInfo="ファイルID","BIGINT","",""
+Domain=ユーザーID=BIGINT
+DomainInfo="ユーザーID","BIGINT","",""
+Domain=役割ID=BIGINT
+DomainInfo="役割ID","BIGINT","",""
+Domain=料理ID=BIGINT
+DomainInfo="料理ID","BIGINT","",""
+Domain=料理画像ID=BIGINT
+DomainInfo="料理画像ID","BIGINT","",""
+Domain=タイムスタンプ=BIGINT
+DomainInfo="タイムスタンプ","BIGINT","年月日時分秒",""
+Domain=フラグ=TINYINT
+DomainInfo="フラグ","TINYINT","0:OFF 1:ON",""
+Domain=金額=INT
+DomainInfo="金額","INT","99999999までの金額",""
+Domain=ファイル・パス=VARCHAR(1024)
+DomainInfo="ファイル・パス","VARCHAR(1024)","指定ディレクトリからの相対パス",""
+Domain=MIMEタイプ=VARCHAR(256)
+DomainInfo="MIMEタイプ","VARCHAR(256)","",""
+Domain=日付=DATE
+DomainInfo="日付","DATE","",""
+Domain=曜日=TINYINT
+DomainInfo="曜日","TINYINT","1:月 2:火 3:水 4:木 5:金 6:土 7:日",""
+Domain=メジャーバージョン=INT
+DomainInfo="メジャーバージョン","INT","",""
+Domain=マイナーバージョン=INT
+DomainInfo="マイナーバージョン","INT","",""
+Domain=リビジョン=BIGINT
+DomainInfo="リビジョン","BIGINT","",""
+Domain=名称=TEXT
+DomainInfo="名称","TEXT","名詞。改行を含まない",""
+Domain=件名=TEXT
+DomainInfo="件名","TEXT","要約やタイトルなど。改行を含まない",""
+Domain=LINE ID=VARCHAR(32)
+DomainInfo="LINE ID","VARCHAR(32)","",""
+Domain=順序=INT
+DomainInfo="順序","INT","",""
+Domain=HTML文章=LONGTEXT
+DomainInfo="HTML文章","LONGTEXT","HTMLタグを含む文章。改行も含む",""
+Domain=テキスト文章=LONGTEXT
+DomainInfo="テキスト文章","LONGTEXT","単純なテキスト。改行を含み、表示の際にbrタグに置き換えられる",""
+Domain=西暦年=INT
+DomainInfo="西暦年","INT","",""
+Domain=月=TINYINT
+DomainInfo="月","TINYINT","",""
+Domain=日=TINYINT
+DomainInfo="日","TINYINT","",""
+Domain=番号=INT
+DomainInfo="番号","INT","1起算",""
 LogicalView=1
 DecodeDomain=0
 ViewModePageIndividually=1
-ViewMode=2
+ViewMode=7
 ViewFormat=0
 UseNondependenceDashLine=0
 FontName=Tahoma
@@ -29,6 +87,12 @@ FooterRight=
 ShowPageoutRelation=1
 RDBMSType=5
 RDBMSTypeName=MySQL
+CommonField="削除フラグ","is_delete","*フラグ","NOT NULL",,"0","",$FFFFFFFF
+CommonField="登録ユーザーID","created_id","*ユーザーID",,,"","",$FFFFFFFF
+CommonField="登録タイムスタンプ","created_at","*タイムスタンプ",,,"","",$FFFFFFFF
+CommonField="更新ユーザーID","updated_id","*ユーザーID",,,"","",$FFFFFFFF
+CommonField="更新タイムスタンプ","updated_at","*タイムスタンプ",,,"","",$FFFFFFFF
+CommonField="データ・バージョン","data_version","*バージョン","NOT NULL",,"1","",$FFFFFFFF
 DefaultPkName=%0:s_PKC
 DefaultPkIndexName=%0:s_PKI
 DefaultIndexName=%0:s_IX%1:d
@@ -38,3 +102,233 @@ UpperCaseKeyword=0
 ShowTag=1
 ShowCommonAttributes=0
 BugFixEntityWidth=1
+
+[Entity]
+PName=users
+LName=ユーザー
+Comment=
+TableOption=
+Page=ユーザー管理
+Left=1044
+Top=682
+Field="ユーザーID","id","*ID","NOT NULL",0,"","",$FFFFFFFF,""
+Field="ニックネーム","nick_name","*名称",,,"","",$FFFFFFFF,""
+Field="LINE ID","line_id","*LINE ID","NOT NULL",,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20230106114251
+Position="ユーザー管理",1044,682
+ZOrder=1
+
+[Entity]
+PName=roles
+LName=役割
+Comment=
+TableOption=
+Page=ユーザー管理
+Left=2185
+Top=682
+Field="役割ID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
+Field="役割名","name","*名称","NOT NULL",,"","",$FFFFFFFF,""
+Field="表示順","display_order","*順序","NOT NULL",,"0","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20230106114546
+Position="ユーザー管理",2185,682
+ZOrder=2
+
+[Entity]
+PName=user_roles
+LName=ユーザー役割
+Comment=
+TableOption=
+Page=ユーザー管理
+Left=1608
+Top=694
+Field="ユーザーID","user_id","*ユーザーID","NOT NULL",0,"","",$FFFFFFFF,""
+Field="役割ID","role_id","*役割ID","NOT NULL",1,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20230106114739
+Position="ユーザー管理",1608,694
+ZOrder=3
+
+[Relation]
+Entity1=users
+Entity2=user_roles
+RelationType1=2
+RelationType2=3
+Fields1=id
+Fields2=user_id
+Cardinarity1=
+Cardinarity2=
+Position="ユーザー管理",0,4328,5672,4130,R,R,""
+Dependence=0
+Caption=
+PName=
+NoDDL=1
+ModifiedDateTime=20230106114802
+LineMode=0
+Bar1=433
+Bar2=567
+Bar3=413
+TermPos1=R
+TermPos2=R
+ZOrder=4
+
+[Relation]
+Entity1=roles
+Entity2=user_roles
+RelationType1=2
+RelationType2=3
+Fields1=id
+Fields2=role_id
+Cardinarity1=
+Cardinarity2=
+Position="ユーザー管理",0,4328,5672,4130,R,R,""
+Dependence=0
+Caption=
+PName=
+NoDDL=1
+ModifiedDateTime=20230106114808
+LineMode=0
+Bar1=433
+Bar2=567
+Bar3=413
+TermPos1=R
+TermPos2=R
+ZOrder=5
+
+[Entity]
+PName=dishs
+LName=料理
+Comment=
+TableOption=
+Page=メニュー管理
+Left=1318
+Top=887
+Field="料理ID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
+Field="料理名","name","*名称","NOT NULL",,"","",$FFFFFFFF,""
+Field="説明文","description","*HTML文章",,,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20230106115911
+Position="メニュー管理",1318,887
+ZOrder=6
+
+[Entity]
+PName=dish_pictures
+LName=料理画像
+Comment=
+TableOption=
+Page=メニュー管理
+Left=1866
+Top=878
+Field="料理画像ID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
+Field="料理ID","dish_id","*料理ID","NOT NULL",,"","",$FFFFFFFF,""
+Field="ファイルID","file_id","*ファイルID","NOT NULL",,"","",$FFFFFFFF,""
+Field="表示順","display_order","*順序","NOT NULL",,"0","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20230107013830
+Position="メニュー管理",1866,878
+ZOrder=7
+
+[Entity]
+PName=files
+LName=ファイル
+Comment=
+TableOption=
+Page=システム
+Left=1198
+Top=752
+Field="ファイルID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
+Field="パス","path","*ファイル・パス","NOT NULL",,"","",$FFFFFFFF,""
+Field="ファイル名","name","*名称",,,"","画面に表示する場合などに使用される名称",$FFFFFFFF,""
+Field="MIMEタイプ","mime_type","*MIMEタイプ","NOT NULL",,"\qapplication/octet-stream\q","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20230106125921
+Position="システム",1198,752
+Position="メニュー管理",2489,876
+ZOrder=8
+
+[Relation]
+Entity1=dishs
+Entity2=dish_pictures
+RelationType1=2
+RelationType2=3
+Fields1=id
+Fields2=id
+Cardinarity1=
+Cardinarity2=
+Position="メニュー管理",0,5651,5411,5124,R,R,""
+Dependence=0
+Caption=
+PName=
+NoDDL=1
+ModifiedDateTime=20230107013848
+LineMode=0
+Bar1=565
+Bar2=541
+Bar3=512
+TermPos1=R
+TermPos2=R
+ZOrder=9
+
+[Relation]
+Entity1=files
+Entity2=dish_pictures
+RelationType1=2
+RelationType2=3
+Fields1=id
+Fields2=file_id
+Cardinarity1=
+Cardinarity2=
+Position="メニュー管理",0,5651,4349,5454,R,R,""
+Position="システム",0,5651,4349,4884,R,R,""
+Dependence=0
+Caption=
+PName=
+NoDDL=1
+ModifiedDateTime=20230107014022
+LineMode=0
+Bar1=565
+Bar2=435
+Bar3=545
+TermPos1=R
+TermPos2=R
+ZOrder=10
+
+[Entity]
+PName=calendars
+LName=カレンダー
+Comment=
+TableOption=
+Page=システム
+Left=1172
+Top=1209
+Field="カレンダーID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
+Field="日付","date","*日付","NOT NULL",,"","",$FFFFFFFF,""
+Field="年","year","*西暦年","NOT NULL",,"","",$FFFFFFFF,""
+Field="月","month","*月","NOT NULL",,"","",$FFFFFFFF,""
+Field="日","day","*日","NOT NULL",,"","",$FFFFFFFF,""
+Field="曜日","weekday","*曜日","NOT NULL",,"","",$FFFFFFFF,""
+Field="曜日月内回数","week_of_month","*番号","NOT NULL",,"","月内で何回目の曜日かを示す",$FFFFFFFF,""
+Field="曜日年内回数","week_of_year","*番号","NOT NULL",,"","年内で何回目の曜日かを示す",$FFFFFFFF,""
+Field="祝日フラグ","is_holiday","*フラグ","NOT NULL",,"0","0:通常日 1:祝日",$FFFFFFFF,""
+Field="祝日名","holiday_name","*名称",,,"","",$FFFFFFFF,""
+Index==2,date
+EffectMode=None
+Tag=マスタ
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20230107014511
+Position="システム",1172,1209
+ZOrder=11

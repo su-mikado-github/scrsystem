@@ -1,1 +1,6 @@
 School Cafeteria Reservation System
+
+■開発用管理者メールアドレス
+
+ID: scr.system.dev@gmail.com
+PW: k~i3Wj-DK(Dd
