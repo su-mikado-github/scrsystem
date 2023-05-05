@@ -29,7 +29,7 @@ services:
       - '3306:3306'
     environment:
       TZ: Asia/Tokyo
-      MYSQL_ROOT_PASSWORD: 'Fh$8zrJsJJWw'
+      MYSQL_ROOT_PASSWORD: 'Fh_8zrJsJJWw'
       MYSQL_DATABASE: 'scrsystem_db'
       MYSQL_USER: 'scrsystem_dbuser'
       MYSQL_PASSWORD: 'P@ssW0rd'
