@@ -1,22 +1,24 @@
 version: "3.7"
 services:
-  frontend:
-    build: ./frontend
-    environment:
-      - NODE_ENV=development
-      - HOST=0.0.0.0
-      - CHOKIDAR_USEPOLLING=true
-    volumes:
-      - ./frontend:/usr/src/app
-    command: sh -c 'npm install && npm run dev'
-    ports:
-      - '3000:3000'
-    tty: true
+#  frontend:
+#    build: ./frontend
+#    environment:
+#      - NODE_ENV=development
+#      - HOST=0.0.0.0
+#      - CHOKIDAR_USEPOLLING=true
+#    volumes:
+#      - ./frontend:/usr/src/app
+#    command: sh -c 'npm install && npm run dev'
+#    ports:
+#      - '3000:3000'
+#    tty: true
   backend:
     build: ./backend
     tty: true
     volumes:
-        - ./backend:/var/www/laravel
+      - ./backend:/var/www/laravel
+      - /var/www/laravel/storage/framework
+      - /var/www/laravel/vendor
     ports:
       - '8000:8000'
   mysql:
@@ -42,7 +44,7 @@ services:
     tty: true
     restart: always
     depends_on:
-      - frontend
+#      - frontend
       - backend
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
