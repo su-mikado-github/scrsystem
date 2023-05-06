@@ -4,9 +4,6 @@
 [submodule "mysql"]
 	path = mysql
 	url = https://github.com/su-mikado-github/scrsystem_mysql.git
-[submodule "frontend"]
-	path = frontend
-	url = https://github.com/su-mikado-github/scrsystem_frontend.git
 [submodule "backend"]
 	path = backend
 	url = https://github.com/su-mikado-github/scrsystem_backend.git
