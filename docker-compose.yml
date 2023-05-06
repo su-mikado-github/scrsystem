@@ -35,17 +35,16 @@ services:
       MYSQL_PASSWORD: 'P@ssW0rd'
     volumes:
       - ./mysql/data:/var/lib/mysql
-  nginx:
-    build:
-      context: ./nginx/
-      dockerfile: Dockerfile
-    ports:
-      - 80:80
-    tty: true
-    restart: always
-    depends_on:
-#      - frontend
-      - backend
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-
+#  nginx:
+#    build:
+#      context: ./nginx/
+#      dockerfile: Dockerfile
+#    ports:
+#      - 80:80
+#    tty: true
+#    restart: always
+#    depends_on:
+##      - frontend
+#      - backend
+#    volumes:
+#      - /var/run/docker.sock:/tmp/docker.sock:ro
