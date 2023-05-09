@@ -15,6 +15,7 @@ services:
   backend:
     build: ./backend
     tty: true
+    restart: always
     volumes:
       - ./backend:/var/www/laravel
       - /var/www/laravel/storage/framework
@@ -33,6 +34,7 @@ services:
       MYSQL_DATABASE: 'scrsystem_db'
       MYSQL_USER: 'scrsystem_dbuser'
       MYSQL_PASSWORD: 'P@ssW0rd'
+    restart: always
     volumes:
       - ./mysql/data:/var/lib/mysql
 #  nginx:
