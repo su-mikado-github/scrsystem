@@ -1,0 +1,10 @@
+■開発環境URL
+
+　https://scrs-test.mikado-works.net/
+
+■管理者
+
+　ID: scr.system.dev@gmail.com
+　PW: password
+　  ※初期パスワード
+

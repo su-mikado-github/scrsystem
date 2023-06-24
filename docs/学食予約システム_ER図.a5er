@@ -1,7 +1,7 @@
-﻿# A5:ER FORMAT:16
+﻿# A5:ER FORMAT:17
 # A5:ER ENCODING:UTF8
 # A5:ER Mk-1 Copyright © 2007 m.matsubara
-# A5:SQL Mk-2 Version 2.17.4 Copyright © 1997 - 2022 m.matsubara
+# A5:SQL Mk-2 Version 2.18.2 Copyright © 1997 - 2023 m.matsubara
 #  https://a5m2.mmatsubara.com
 
 [Manager]
@@ -57,6 +57,12 @@ Domain=購入回数券ID=BIGINT
 DomainInfo="購入回数券ID","BIGINT","",""
 Domain=カレンダーID=BIGINT
 DomainInfo="カレンダーID","BIGINT","",""
+Domain=時刻ID=BIGINT
+DomainInfo="時刻ID","BIGINT","",""
+Domain=メニューID=BIGINT
+DomainInfo="メニューID","BIGINT","",""
+Domain=空き状況ID=BIGINT
+DomainInfo="空き状況ID","BIGINT","",""
 Domain=トークン=VARCHAR(256)
 DomainInfo="トークン","VARCHAR(256)","",""
 Domain=LINE IDトークン=TEXT
@@ -83,6 +89,10 @@ Domain=日付=DATE
 DomainInfo="日付","DATE","",""
 Domain=時刻=TIME
 DomainInfo="時刻","TIME","",""
+Domain=時=INT
+DomainInfo="時","INT","",""
+Domain=分=INT
+DomainInfo="分","INT","",""
 Domain=日時=DATETIME
 DomainInfo="日時","DATETIME","",""
 Domain=曜日=TINYINT
@@ -121,6 +131,8 @@ Domain=日=TINYINT
 DomainInfo="日","TINYINT","",""
 Domain=番号=INT
 DomainInfo="番号","INT","1起算",""
+Domain=長番号=BIGINT
+DomainInfo="長番号","BIGINT","1起算",""
 Domain=性別=TINYINT
 DomainInfo="性別","TINYINT","性別を示す列挙型。1:男性 2:女性",""
 Domain=電話番号ハイフンなし=VARCHAR(16)
@@ -142,7 +154,17 @@ DomainInfo="重さ(g)","DOUBLE","",""
 Domain=JSON文字列=TEXT
 DomainInfo="JSON文字列","TEXT","",""
 Domain=料理種類=TINYINT
-DomainInfo="料理種類","TINYINT","0:食堂メニュー 1:お弁当(通常) 2:お弁当(試合)",""
+DomainInfo="料理種類","TINYINT","1:食堂メニュー 2:お弁当(通常) 3:お弁当(試合)",""
+Domain=メニューアイテム種類=INT
+DomainInfo="メニューアイテム種類","INT","0:セパレータ 1:サイト内リンク 2:サイト外リンク 3:アクション処理 4:別メニュー展開",""
+Domain=アクション=TEXT
+DomainInfo="アクション","TEXT","",""
+Domain=メニュー分類=VARCHAR(1024)
+DomainInfo="メニュー分類","VARCHAR(1024)","",""
+Domain=率=DOUBLE
+DomainInfo="率","DOUBLE","小数表記",""
+Domain=率(％)=INT
+DomainInfo="率(％)","INT","整数表記",""
 LogicalView=1
 DecodeDomain=0
 ViewModePageIndividually=1
@@ -159,10 +181,11 @@ FooterLeft=
 FooterCenter=%PageNo% / %PageCount%
 FooterRight=
 ShowPageoutRelation=1
-RDBMSType=5
+RDBMSType=6
 RDBMSTypeName=MySQL
 GenerateDropTableStatement=1
 DropTableIfExists=1
+ForceQuoteIdentifier=1
 CommonField="削除フラグ","is_delete","*フラグ","NOT NULL",,"0","",$FFFFFFFF
 CommonField="登録ユーザーID","created_id","*ユーザーID",,,"","",$FFFFFFFF
 CommonField="登録タイムスタンプ","created_at","*タイムスタンプ",,,"","",$FFFFFFFF
@@ -185,8 +208,8 @@ LName=ユーザー
 Comment=
 TableOption=
 Page=ユーザー管理
-Left=1798
-Top=616
+Left=1804
+Top=562
 Field="ユーザーID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
 Field="姓","last_name","*名称",,,"","",$FFFFFFFF,""
 Field="名","first_name","*名称",,,"","",$FFFFFFFF,""
@@ -202,14 +225,18 @@ Field="所属詳細ID","affiliation_detail_id","*所属ID",,,"","",$FFFFFFFF,""
 Field="LINEユーザーID","line_user_id","*LINEユーザーID",,,"","",$FFFFFFFF,""
 Field="システム管理者フラグ","is_admin","*フラグ","NOT NULL",,"0","0:一般 1:システム管理者",$FFFFFFFF,""
 Field="システム管理者パスワード","admin_password","*パスワード","NOT NULL",,"\q*\q","強制的に管理者でログインする場合のパスワード",$FFFFFFFF,""
+Field="リセット・トークン","reset_token","*トークン",,,"","",$FFFFFFFF,""
 Field="最終ログイン日時","last_login_dt","*日時",,,"","",$FFFFFFFF,""
+Field="チェックイン・トークン","checkin_token","*トークン",,,"","",$FFFFFFFF,""
 Field="初期設定済フラグ","is_initial_setting","*フラグ","NOT NULL",,"0","",$FFFFFFFF,""
+Field="登録日","regist_date","*日付",,,"","",$FFFFFFFF,""
+Field="退会日","unregist_date","*日付",,,"","",$FFFFFFFF,""
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20230423154236
-Position="ユーザー管理",1798,616
-Position="予約管理",1002,847
+ModifiedDateTime=20230621223001
+Position="ユーザー管理",1804,562
+Position="予約管理",639,1667
 ZOrder=1
 
 [Entity]
@@ -218,8 +245,8 @@ LName=役割
 Comment=
 TableOption=
 Page=ユーザー管理
-Left=2746
-Top=647
+Left=2531
+Top=279
 Field="役割ID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
 Field="役割名","name","*名称","NOT NULL",,"","",$FFFFFFFF,""
 Field="表示順","display_order","*順序","NOT NULL",,"0","",$FFFFFFFF,""
@@ -227,7 +254,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20230106114546
-Position="ユーザー管理",2746,647
+Position="ユーザー管理",2531,279
 ZOrder=2
 
 [Entity]
@@ -235,19 +262,16 @@ PName=dishs
 LName=料理
 Comment=
 TableOption=
-Page=メニュー管理
-Left=2214
-Top=841
+Page=退避・削除
+Left=2205
+Top=568
 Field="料理ID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
 Field="料理種類","dish_type","*料理種類","NOT NULL",,"","",$FFFFFFFF,""
-Field="料理名","name","*名称","NOT NULL",,"","",$FFFFFFFF,""
-Field="説明文","description","*HTML文章","NOT NULL",,"","",$FFFFFFFF,""
-Field="資料パス","document_path","*ファイル・パス",,,"","",$FFFFFFFF,""
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20230426200111
-Position="メニュー管理",2214,841
+ModifiedDateTime=20230506200457
+Position="退避・削除",2205,568
 ZOrder=6
 
 [Entity]
@@ -275,8 +299,8 @@ LName=ファイル
 Comment=
 TableOption=
 Page=システム
-Left=1198
-Top=752
+Left=1197
+Top=969
 Field="ファイルID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
 Field="パス","path","*ファイル・パス","NOT NULL",,"","",$FFFFFFFF,""
 Field="ファイル名","name","*名称",,,"","画面に表示する場合などに使用される名称",$FFFFFFFF,""
@@ -285,7 +309,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20230106125921
-Position="システム",1198,752
+Position="システム",1197,969
 ZOrder=8
 
 [Entity]
@@ -294,8 +318,8 @@ LName=カレンダー
 Comment=
 TableOption=
 Page=システム
-Left=1187
-Top=1094
+Left=1381
+Top=367
 Field="カレンダーID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
 Field="日付","date","*日付","NOT NULL",,"","",$FFFFFFFF,""
 Field="年","year","*西暦年","NOT NULL",,"","",$FFFFFFFF,""
@@ -312,8 +336,9 @@ Tag=マスタ
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20230220001010
-Position="システム",1187,1094
+Position="システム",1381,367
 Position="メニュー管理",928,777
+Position="予約管理",1410,896
 ZOrder=11
 
 [Entity]
@@ -322,20 +347,25 @@ LName=予約
 Comment=
 TableOption=
 Page=予約管理
-Left=1879
-Top=865
+Left=1545
+Top=1648
 Field="予約ID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
+Field="種別","type","*予約種別","NOT NULL",,"","1:お弁当 2:来店(サッカー部) 3:来店(サッカー部以外)",$FFFFFFFF,""
 Field="利用日","date","*日付","NOT NULL",,"","",$FFFFFFFF,""
-Field="利用時刻ID","time_schedule_id","*タイムスケジュールID","NOT NULL",,"","",$FFFFFFFF,""
+Field="利用時刻","time","*時刻",,,"","",$FFFFFFFF,""
+Field="利用終了時刻","end_time","*時刻",,,"","",$FFFFFFFF,""
 Field="利用者ID","user_id","*ユーザーID","NOT NULL",,"","",$FFFFFFFF,""
 Field="予約日時","reserve_dt","*日時","NOT NULL",,"","",$FFFFFFFF,""
 Field="予約数","reserve_count","*数量","NOT NULL",,"","",$FFFFFFFF,""
-Field="相席可フラグ","is_table_share","*フラグ","NOT NULL",,"","0:相席不可 1:相席可",$FFFFFFFF,""
+Field="相席可フラグ","is_table_share","*フラグ","NOT NULL",,"0","0:相席不可 1:相席可",$FFFFFFFF,""
+Field="リマインド日時","remind_dt","*日時",,,"","",$FFFFFFFF,""
+Field="チェックイン日時","checkin_dt","*日時",,,"","",$FFFFFFFF,""
+Field="取消日時","cancel_dt","*日時",,,"","",$FFFFFFFF,""
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20230220025019
-Position="予約管理",1879,865
+ModifiedDateTime=20230622172959
+Position="予約管理",1545,1648
 ZOrder=12
 
 [Relation]
@@ -348,7 +378,7 @@ Fields2=user_id
 Cardinarity1=
 Cardinarity2=
 Position="ユーザー管理",0,6951,4528,4361,L,R,""
-Position="予約管理",0,3047,4528,5517,R,R,""
+Position="予約管理",0,2428,4528,4872,R,R,""
 Dependence=0
 Caption=
 PName=
@@ -376,9 +406,9 @@ Field="時刻","time","*時刻","NOT NULL",,"","",$FFFFFFFF,""
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20230219233413
+ModifiedDateTime=20230514220254
 Position="システム",1184,1583
-Position="予約管理",1950,552
+Position="予約管理",1818,1395
 ZOrder=14
 
 [Entity]
@@ -398,7 +428,7 @@ Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20230108214346
 Position="区分",1168,403
-Position="ユーザー管理",2702,423
+Position="ユーザー管理",2644,641
 ZOrder=16
 
 [Entity]
@@ -417,7 +447,7 @@ EffectMode=None
 Tag=区分マスタ
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20230219220034
+ModifiedDateTime=20230613200959
 Position="区分",1168,568
 Position="ユーザー管理",2652,806
 ZOrder=17
@@ -431,7 +461,7 @@ Fields1=id
 Fields2=affiliation_id
 Cardinarity1=
 Cardinarity2=
-Position="ユーザー管理",0,3424,4440,5531,R,R,""
+Position="ユーザー管理",0,4726,4440,5475,R,R,""
 Position="予約管理",0,7426,2574,4505,R,L,""
 Position="区分",0,5560,4440,4338,R,R,""
 Dependence=0
@@ -440,9 +470,9 @@ PName=
 NoDDL=1
 ModifiedDateTime=20230310144749
 LineMode=0
-Bar1=342
+Bar1=473
 Bar2=444
-Bar3=553
+Bar3=548
 TermPos1=R
 TermPos2=R
 ZOrder=19
@@ -453,8 +483,8 @@ LName=LINEユーザー
 Comment=
 TableOption=
 Page=ユーザー管理
-Left=1864
-Top=1211
+Left=1855
+Top=1343
 Field="LINEユーザーID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
 Field="LINE利用者ID","line_owner_id","*LINE利用者ID","NOT NULL",,"","",$FFFFFFFF,""
 Field="識別トークン","token","*トークン","NOT NULL",,"","",$FFFFFFFF,""
@@ -469,8 +499,8 @@ Index==2,line_owner_id
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20230424014420
-Position="ユーザー管理",1864,1211
+ModifiedDateTime=20230506194813
+Position="ユーザー管理",1855,1343
 ZOrder=20
 
 [Relation]
@@ -482,7 +512,7 @@ Fields1=id
 Fields2=line_user_id
 Cardinarity1=
 Cardinarity2=
-Position="ユーザー管理",0,5098,4007,5281,R,R,""
+Position="ユーザー管理",0,5098,4007,5050,R,R,""
 Position="予約管理",0,7426,2574,5720,R,L,""
 Dependence=0
 Caption=
@@ -492,7 +522,7 @@ ModifiedDateTime=20230109165952
 LineMode=0
 Bar1=510
 Bar2=401
-Bar3=528
+Bar3=505
 TermPos1=R
 TermPos2=R
 ZOrder=21
@@ -502,43 +532,19 @@ PName=dish_calendars
 LName=料理カレンダー
 Comment=
 TableOption=
-Page=メニュー管理
-Left=1561
-Top=847
+Page=退避・削除
+Left=1474
+Top=542
 Field="料理カレンダーID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
 Field="カレンダーID","calendar_id","*カレンダーID","NOT NULL",,"","",$FFFFFFFF,""
-Field="料理ID","dish_id","*料理ID","NOT NULL",,"","",$FFFFFFFF,""
+Field="料理種類","dish_type","*料理種類","NOT NULL",,"","",$FFFFFFFF,""
 Field="表示順","display_order","*順序","NOT NULL",,"0","",$FFFFFFFF,""
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20230220032024
-Position="メニュー管理",1561,847
+ModifiedDateTime=20230524005601
+Position="退避・削除",1474,542
 ZOrder=22
-
-[Relation]
-Entity1=calendars
-Entity2=dish_calendars
-RelationType1=2
-RelationType2=3
-Fields1=id
-Fields2=calendar_id
-Cardinarity1=
-Cardinarity2=
-Position="メニュー管理",0,3837,5181,2703,R,R,""
-Position="システム",0,4819,5181,6486,R,R,""
-Dependence=0
-Caption=
-PName=
-NoDDL=1
-ModifiedDateTime=20230220032037
-LineMode=0
-Bar1=384
-Bar2=518
-Bar3=270
-TermPos1=R
-TermPos2=R
-ZOrder=23
 
 [Relation]
 Entity1=dishs
@@ -546,19 +552,19 @@ Entity2=dish_calendars
 RelationType1=2
 RelationType2=3
 Fields1=id
-Fields2=dish_id
+Fields2=dish_type
 Cardinarity1=
 Cardinarity2=
-Position="メニュー管理",0,4819,5181,5433,R,R,""
+Position="退避・削除",0,5000,5000,5000,R,R,""
 Dependence=0
 Caption=
 PName=
 NoDDL=1
 ModifiedDateTime=20230116183550
 LineMode=0
-Bar1=482
-Bar2=518
-Bar3=543
+Bar1=500
+Bar2=500
+Bar3=500
 TermPos1=R
 TermPos2=R
 ZOrder=24
@@ -573,13 +579,14 @@ Left=1161
 Top=754
 Field="所属詳細ID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
 Field="詳細分類","detail_type","*所属詳細分類","NOT NULL",,"","",$FFFFFFFF,""
+Field="サッカー部フラグ","is_soccer","*フラグ","NOT NULL",,"false","",$FFFFFFFF,""
 Field="所属詳細名","name","*名称","NOT NULL",,"","",$FFFFFFFF,""
 Field="表示順","display_order","*順序","NOT NULL",,"0","",$FFFFFFFF,""
 EffectMode=None
 Tag=区分マスタ
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20230219220508
+ModifiedDateTime=20230515151304
 Position="区分",1161,754
 Position="ユーザー管理",2653,973
 ZOrder=25
@@ -594,11 +601,11 @@ Query=select\n  T.id -- カレンダーID\n  , T.date -- 日付\n  , T.year -- �
 LNameByComment=1
 Color=$000000
 BkColor=$FFFFFF
-Position="システム",2011,582
+Position="システム",2155,116
 ZOrder=26
 Page=システム
-Left=2011
-Top=582
+Left=2155
+Top=116
 
 [Entity]
 PName=seats
@@ -606,8 +613,8 @@ LName=座席
 Comment=
 TableOption=
 Page=予約管理
-Left=3497
-Top=914
+Left=3133
+Top=1735
 Field="座席ID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
 Field="座席番号","seat_no","*番号","NOT NULL",,"","",$FFFFFFFF,""
 Field="座席グループ番号","seat_group_no","*番号","NOT NULL",,"","",$FFFFFFFF,""
@@ -616,7 +623,7 @@ Tag=マスタ
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20230220023335
-Position="予約管理",3497,914
+Position="予約管理",3133,1735
 Position="システム",2300,1171
 ZOrder=27
 
@@ -626,8 +633,8 @@ LName=予約座席
 Comment=
 TableOption=
 Page=予約管理
-Left=2757
-Top=914
+Left=2393
+Top=1739
 Field="予約座席ID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
 Field="予約ID","reserve_id","*予約ID","NOT NULL",,"","",$FFFFFFFF,""
 Field="座席ID","seat_id","*座席ID","NOT NULL",,"","",$FFFFFFFF,""
@@ -636,7 +643,7 @@ Tag=関連
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20230220024129
-Position="予約管理",2757,914
+Position="予約管理",2393,1739
 ZOrder=28
 
 [Relation]
@@ -648,7 +655,7 @@ Fields1=id
 Fields2=reserve_id
 Cardinarity1=
 Cardinarity2=
-Position="予約管理",0,4456,4548,3967,R,R,""
+Position="予約管理",0,4456,4548,5882,R,R,""
 Dependence=0
 Caption=
 PName=
@@ -657,7 +664,7 @@ ModifiedDateTime=20230220024152
 LineMode=0
 Bar1=446
 Bar2=455
-Bar3=397
+Bar3=588
 TermPos1=R
 TermPos2=R
 ZOrder=29
@@ -671,7 +678,7 @@ Fields1=id
 Fields2=seat_id
 Cardinarity1=
 Cardinarity2=
-Position="予約管理",0,5452,4548,5452,R,R,""
+Position="予約管理",0,5452,4548,4927,R,R,""
 Position="システム",0,5452,4548,6923,R,R,""
 Dependence=0
 Caption=
@@ -681,7 +688,7 @@ ModifiedDateTime=20230220024220
 LineMode=0
 Bar1=545
 Bar2=455
-Bar3=545
+Bar3=493
 TermPos1=R
 TermPos2=R
 ZOrder=30
@@ -692,10 +699,10 @@ Entity2=reserves
 RelationType1=2
 RelationType2=3
 Fields1=id
-Fields2=time_schedule_id
+Fields2=time
 Cardinarity1=
 Cardinarity2=
-Position="予約管理",0,4654,4834,4392,R,R,""
+Position="予約管理",0,4654,4834,7606,R,R,""
 Position="システム",0,5462,4538,9283,R,R,""
 Dependence=0
 Caption=
@@ -705,13 +712,13 @@ ModifiedDateTime=20230220025011
 LineMode=0
 Bar1=465
 Bar2=483
-Bar3=439
+Bar3=761
 TermPos1=R
 TermPos2=R
 ZOrder=31
 
 [Entity]
-PName=tikckets
+PName=tickets
 LName=回数券
 Comment=
 TableOption=
@@ -721,14 +728,15 @@ Top=1417
 Field="回数券ID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
 Field="名称","name","*名称","NOT NULL",,"","",$FFFFFFFF,""
 Field="枚数","ticket_count","*数量","NOT NULL",,"","",$FFFFFFFF,""
+Field="表示順","display_order","*順序","NOT NULL",,"0","",$FFFFFFFF,""
 EffectMode=None
 Tag=マスタ
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20230220030412
+ModifiedDateTime=20230515110132
 Position="システム",2077,1417
-Position="ユーザー管理",1078,1122
-Position="予約管理",1139,1745
+Position="ユーザー管理",1062,1109
+Position="予約管理",772,2703
 ZOrder=32
 
 [Entity]
@@ -737,18 +745,21 @@ LName=購入回数券
 Comment=
 TableOption=
 Page=予約管理
-Left=1134
-Top=1420
+Left=747
+Top=2397
 Field="購入回数券ID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
 Field="購入者ID","user_id","*ユーザーID","NOT NULL",,"","",$FFFFFFFF,""
 Field="購入日時","buy_dt","*日時","NOT NULL",,"","",$FFFFFFFF,""
 Field="回数券ID","ticket_id","*回数券ID","NOT NULL",,"","",$FFFFFFFF,""
+Field="購入枚数","ticket_count","*数量","NOT NULL",,"","",$FFFFFFFF,""
+Field="支払日時","payment_dt","*日時",,,"","",$FFFFFFFF,""
+Field="支払金額","payment_amount","*金額",,,"","",$FFFFFFFF,""
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20230220031447
-Position="予約管理",1134,1420
-Position="ユーザー管理",1044,764
+ModifiedDateTime=20230624224010
+Position="予約管理",747,2397
+Position="ユーザー管理",1028,748
 ZOrder=33
 
 [Relation]
@@ -760,8 +771,8 @@ Fields1=id
 Fields2=user_id
 Cardinarity1=
 Cardinarity2=
-Position="ユーザー管理",0,3849,4957,1791,R,R,""
-Position="予約管理",0,5080,4762,4550,R,R,""
+Position="ユーザー管理",0,3849,4957,1520,R,R,""
+Position="予約管理",0,5080,4762,4475,R,R,""
 Dependence=0
 Caption=
 PName=
@@ -770,13 +781,13 @@ ModifiedDateTime=20230220030735
 LineMode=0
 Bar1=385
 Bar2=496
-Bar3=179
+Bar3=152
 TermPos1=R
 TermPos2=R
 ZOrder=34
 
 [Relation]
-Entity1=tikckets
+Entity1=tickets
 Entity2=buy_tickets
 RelationType1=2
 RelationType2=3
@@ -784,8 +795,8 @@ Fields1=id
 Fields2=ticket_id
 Cardinarity1=
 Cardinarity2=
-Position="ユーザー管理",0,5322,3394,5266,R,R,""
-Position="予約管理",0,5293,4707,4544,R,R,""
+Position="ユーザー管理",0,5322,3394,5000,R,R,""
+Position="予約管理",0,5293,4707,4322,R,R,""
 Position="システム",0,7896,2104,7811,R,R,""
 Dependence=0
 Caption=
@@ -795,7 +806,7 @@ ModifiedDateTime=20230220030747
 LineMode=0
 Bar1=532
 Bar2=339
-Bar3=527
+Bar3=500
 TermPos1=R
 TermPos2=R
 ZOrder=35
@@ -806,8 +817,8 @@ LName=利用回数券
 Comment=
 TableOption=
 Page=予約管理
-Left=1892
-Top=1252
+Left=1989
+Top=2124
 Field="利用回数券ID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
 Field="予約ID","reserve_id","*予約ID","NOT NULL",,"","",$FFFFFFFF,""
 Field="利用者ID","user_id","*ユーザーID","NOT NULL",,"","",$FFFFFFFF,""
@@ -817,7 +828,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20230222003425
-Position="予約管理",1892,1252
+Position="予約管理",1989,2124
 ZOrder=36
 
 [Relation]
@@ -829,16 +840,16 @@ Fields1=id
 Fields2=reserve_id
 Cardinarity1=
 Cardinarity2=
-Position="予約管理",0,4718,5573,4616,R,R,""
+Position="予約管理",1,5350,2908,4792,R,R,""
 Dependence=0
 Caption=
 PName=
 NoDDL=1
 ModifiedDateTime=20230220031859
-LineMode=0
-Bar1=472
-Bar2=557
-Bar3=462
+LineMode=1
+Bar1=535
+Bar2=291
+Bar3=479
 TermPos1=R
 TermPos2=R
 ZOrder=37
@@ -853,7 +864,7 @@ Fields2=user_id
 Cardinarity1=
 Cardinarity2=
 Position="ユーザー管理",0,1119,9500,2947,L,R,""
-Position="予約管理",0,7466,4503,2641,R,R,""
+Position="予約管理",0,7927,5557,2641,R,R,""
 Dependence=0
 Caption=
 PName=
@@ -877,7 +888,7 @@ Fields2=buy_ticket_id
 Cardinarity1=
 Cardinarity2=
 Position="ユーザー管理",0,5076,2938,7896,L,R,""
-Position="予約管理",0,4116,5962,8422,R,R,""
+Position="予約管理",4,7225,4897,8422,R,R,""
 Dependence=0
 Caption=
 PName=
@@ -897,10 +908,11 @@ LName=料理メニュー
 Comment=
 TableOption=
 Page=メニュー管理
-Left=2856
-Top=859
+Left=1642
+Top=778
 Field="料理メニューID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
-Field="料理ID","dish_id","*料理ID","NOT NULL",,"","",$FFFFFFFF,""
+Field="カレンダーID","calendar_id","*カレンダーID","NOT NULL",,"","",$FFFFFFFF,""
+Field="料理種類","dish_type","*料理種類","NOT NULL",,"","",$FFFFFFFF,""
 Field="表示順","display_order","*順序","NOT NULL",,"0","",$FFFFFFFF,""
 Field="名称","name","*名称","NOT NULL",,"","",$FFFFFFFF,""
 Field="エネルギー","energy","*カロリー(kcal)","NOT NULL",,"0.0","",$FFFFFFFF,""
@@ -911,32 +923,9 @@ Field="食物繊維","dietary_fiber","*重さ(g)","NOT NULL",,"0.0","",$FFFFFFFF
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20230225023218
-Position="メニュー管理",2856,859
+ModifiedDateTime=20230613205940
+Position="メニュー管理",1642,778
 ZOrder=41
-
-[Relation]
-Entity1=dishs
-Entity2=dish_menus
-RelationType1=2
-RelationType2=3
-Fields1=id
-Fields2=dish_id
-Cardinarity1=
-Cardinarity2=
-Position="メニュー管理",0,5225,4775,2115,R,R,""
-Dependence=0
-Caption=
-PName=
-NoDDL=1
-ModifiedDateTime=20230225023243
-LineMode=0
-Bar1=522
-Bar2=478
-Bar3=212
-TermPos1=R
-TermPos2=R
-ZOrder=42
 
 [Relation]
 Entity1=affiliation_details
@@ -979,3 +968,569 @@ BkColor=$FFFFFF
 ModifiedDateTime=20230424015423
 Position="ユーザー管理",1942,1739
 ZOrder=44
+
+[Entity]
+PName=menus
+LName=メニュー
+Comment=
+TableOption=
+Page=システム
+Left=2697
+Top=615
+Field="メニューID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
+Field="分類","category","*メニュー分類","NOT NULL",,"","",$FFFFFFFF,""
+Field="メニューアイテム識別キー","item_key","*識別キー",,,"","分類内でユニークな識別キー",$FFFFFFFF,""
+Field="メニューアイテム種類","item_type","*メニューアイテム種類","NOT NULL",,"","0:セパレータ 1:サイト内リンク 2:サイト外リンク 3:アクション処理 4:別メニュー展開",$FFFFFFFF,""
+Field="名称","name","*名称",,,"","",$FFFFFFFF,""
+Field="パス","path","*ファイル・パス",,,"","",$FFFFFFFF,""
+Field="URL","url","*URL",,,"","",$FFFFFFFF,""
+Field="実行アクション","action","*アクション",,,"","",$FFFFFFFF,""
+Field="別メニュー分類","sub_menu_category","*メニュー分類",,,"","",$FFFFFFFF,""
+Field="表示順","display_order","*順序","NOT NULL",,"0","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20230522103825
+Position="システム",2697,615
+ZOrder=45
+
+[Relation]
+Entity1=week_calendars
+Entity2=calendars
+RelationType1=2
+RelationType2=4
+Fields1=year,month,day
+Fields2=year,month,day
+Cardinarity1=
+Cardinarity2=
+Position="予約管理",0,6471,3529,3048,R,L,""
+Position="メニュー管理",0,5176,4824,3068,R,L,""
+Position="システム",0,2488,4898,2789,R,R,""
+Dependence=0
+Caption=
+PName=
+NoDDL=1
+ModifiedDateTime=20230521232139
+LineMode=0
+Bar1=647
+Bar2=353
+Bar3=305
+TermPos1=R
+TermPos2=L
+ZOrder=46
+
+[View]
+PName=month_calendars
+LName=月カレンダー
+Tag=ビュー
+Comment=
+ViewOption=
+Query=SELECT\n    T.year -- 年\n    , T.month -- 月\n    , T.day -- 月初日\n    , T.date -- 月初日付\n    , T.last_date -- 月末日\n    , T.last_day -- 月末日付\n    , T.previous_year -- 前月年\n    , T.previous_month -- 前月月\n    , T.previous_day -- 前月月初日\n    , T.previous_date -- 前月月初日付\n    , T.next_year -- 次月年\n    , T.next_month -- 次月月\n    , T.next_day -- 次月月初日\n    , T.next_date -- 次月月初日付\n    , (\n        SELECT MAX(ST.date) FROM calendars ST WHERE ST.date <= T.date AND ST.weekday = 7\n      ) AS start_date -- 当月を含む初週の開始日\n    , (\n        SELECT MIN(ST.date) FROM calendars ST WHERE ST.date >= T.last_date AND ST.weekday = 6\n      ) AS end_date -- 当月を含む末週の終了日\nFROM\n    (\n        SELECT\n            T.year\n            , T.month\n            , T.day\n            , T.date\n            , MAX(T1.date) AS last_date\n            , MAX(T1.day) AS last_day\n            , T2.year AS previous_year\n            , T2.month AS previous_month\n            , T2.day AS previous_day\n            , T2.date AS previous_date\n            , T3.year AS next_year\n            , T3.month AS next_month\n            , T3.day AS next_day\n            , T3.date AS next_date\n        FROM\n            calendars T \n            INNER JOIN calendars T1 ON (\n                T1.year = T.year \n                AND T1.month = T.month \n            )\n            INNER JOIN calendars T2 ON (\n                T2.date = SubDate(T.date, INTERVAL 1 MONTH) \n            )\n            INNER JOIN calendars T3 ON (\n                T3.date = AddDate(T.date, INTERVAL 1 MONTH) \n            )\n        WHERE\n            T.day = 1 \n        GROUP BY\n            T.year\n            , T.month\n            , T.day\n            , T.date\n            , T2.year\n            , T2.month\n            , T2.day\n            , T2.date\n            , T3.year\n            , T3.month\n            , T3.day\n            , T3.date \n    ) T\n\n
+LNameByComment=1
+Color=$000000
+BkColor=$FFFFFF
+Position="システム",2160,566
+ZOrder=47
+Page=システム
+Left=2160
+Top=566
+
+[Relation]
+Entity1=month_calendars
+Entity2=calendars
+RelationType1=2
+RelationType2=4
+Fields1=year,month
+Fields2=year,month
+Cardinarity1=
+Cardinarity2=
+Position="予約管理",0,6471,3529,4490,R,L,""
+Position="メニュー管理",0,5176,4824,4826,R,L,""
+Position="システム",0,1522,4863,7101,R,R,""
+Dependence=0
+Caption=
+PName=
+NoDDL=1
+ModifiedDateTime=20230521234959
+LineMode=0
+Bar1=647
+Bar2=353
+Bar3=449
+TermPos1=R
+TermPos2=L
+ZOrder=48
+
+[Relation]
+Entity1=calendars
+Entity2=dish_menus
+RelationType1=2
+RelationType2=3
+Fields1=id
+Fields2=calendar_id
+Cardinarity1=
+Cardinarity2=
+Position="予約管理",0,6573,3522,6471,L,R,""
+Position="メニュー管理",0,5506,4494,5467,R,R,""
+Position="システム",0,9562,752,7919,L,R,""
+Dependence=0
+Caption=
+PName=
+NoDDL=1
+ModifiedDateTime=20230524005820
+LineMode=0
+Bar1=657
+Bar2=352
+Bar3=647
+TermPos1=L
+TermPos2=R
+ZOrder=49
+
+[View]
+PName=daily_dish_menus
+LName=日別料理メニュー
+Tag=ビュー
+Comment=
+ViewOption=
+Query=SELECT\n    T.calendar_id -- カレンダーID\n    , T1.date -- 日付\n    , T1.year -- 年\n    , T1.month -- 月\n    , T1.day -- 日\n    , T.dish_type -- 料理種別\n    , GROUP_CONCAT(T.name ORDER BY T.display_order SEPARATOR \q/\q) as name -- 料理メニュー名\n    , SUM(T.energy) AS energy -- エネルギー\n    , SUM(T.carbohydrates) AS carbohydrates -- 炭水化物\n    , SUM(T.protein) AS protein -- たんぱく質\n    , SUM(T.lipid) AS lipid -- 脂質\n    , SUM(T.dietary_fiber) AS dietary_fiber -- 食物繊維\nFROM\n    dish_menus T\n    INNER JOIN calendars T1 ON (\n        T1.id = T.calendar_id\n        AND T1.is_delete = 0\n    )\nWHERE\n    T.is_delete = 0\nGROUP BY\n    T.calendar_id\n    , T.dish_type\n
+LNameByComment=1
+Color=$000000
+BkColor=$FFFFFF
+Position="メニュー管理",1653,1172
+ZOrder=51
+Page=メニュー管理
+Left=1653
+Top=1172
+
+[Relation]
+Entity1=calendars
+Entity2=daily_dish_menus
+RelationType1=2
+RelationType2=3
+Fields1=id
+Fields2=calendar_id
+Cardinarity1=
+Cardinarity2=
+Position="予約管理",0,8016,1177,6471,L,R,""
+Position="メニュー管理",0,7404,4519,5500,R,R,""
+Position="システム",0,7687,1185,7919,L,R,""
+Dependence=0
+Caption=
+PName=
+NoDDL=1
+ModifiedDateTime=20230610165122
+LineMode=0
+Bar1=802
+Bar2=118
+Bar3=647
+TermPos1=L
+TermPos2=R
+ZOrder=52
+
+[Relation]
+Entity1=calendars
+Entity2=reserves
+RelationType1=2
+RelationType2=3
+Fields1=date
+Fields2=date
+Cardinarity1=
+Cardinarity2=
+Position="予約管理",1,4947,5538,1925,R,R,""
+Position="メニュー管理",0,500,9500,5176,R,R,""
+Position="システム",0,5841,4159,5147,R,R,""
+Dependence=0
+Caption=
+PName=
+NoDDL=1
+ModifiedDateTime=20230526165602
+LineMode=1
+Bar1=495
+Bar2=554
+Bar3=192
+TermPos1=R
+TermPos2=R
+ZOrder=53
+
+[View]
+PName=empty_seats
+LName=空き座席
+Tag=ビュー
+Comment=
+ViewOption=
+Query=SELECT\n    T.id AS seat_id -- 座席ID\n    , T.seat_no -- 座席番号\n    , T.seat_group_no -- 座席グループ番号\n    , T1.id AS calendar_id -- カレンダーID\n    , T1.date -- 日付\n    , T1.year -- 年\n    , T1.month -- 月\n    , T1.day -- 日\n    , T1.weekday -- 曜日\n    , T2.id AS time_id -- 時刻ID\n    , T2.hour -- 時\n    , T2.minute -- 分\n    , T2.time -- 時刻\n    , T2.time_minutes -- 時刻(分)\nFROM\n    seats T \n    INNER JOIN calendars T1 ON (\n        T1.is_delete = 0\n    )\n    INNER JOIN times T2 ON (\n        T2.is_delete = 0\n    )\nWHERE\n    T.is_delete = 0\n    AND NOT EXISTS (\n        SELECT\n            *\n        FROM\n            reserves S1T\n            INNER JOIN reserve_seats S1T1 ON (\n                S1T1.is_delete = 0\n                AND S1T1.reserve_id = S1T.id\n            )\n        WHERE\n            S1T.is_delete = 0\n            AND S1T.date = T1.date\n            AND S1T.time <= T2.time\n            AND S1T.end_time >= T2.time\n            AND S1T1.seat_id = T.id\n    )\n\n
+LNameByComment=1
+Color=$000000
+BkColor=$FFFFFF
+Position="予約管理",3292,1198
+ZOrder=54
+Page=予約管理
+Left=3292
+Top=1198
+
+[Relation]
+Entity1=seats
+Entity2=empty_seats
+RelationType1=2
+RelationType2=3
+Fields1=id
+Fields2=seat_id
+Cardinarity1=
+Cardinarity2=
+Position="予約管理",0,4379,4963,5002,R,R,""
+Position="システム",0,4442,5558,5625,R,R,""
+Dependence=0
+Caption=
+PName=
+NoDDL=1
+ModifiedDateTime=20230601140055
+LineMode=0
+Bar1=438
+Bar2=496
+Bar3=500
+TermPos1=R
+TermPos2=R
+ZOrder=55
+
+[Entity]
+PName=times
+LName=時刻
+Comment=
+TableOption=
+Page=システム
+Left=666
+Top=289
+Field="時刻ID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
+Field="時刻","time","*時刻","NOT NULL",,"","",$FFFFFFFF,""
+Field="時","hour","*時",,,"","",$FFFFFFFF,""
+Field="分","minute","*分",,,"","",$FFFFFFFF,""
+Field="時刻（分）","time_minutes","*分","NOT NULL",,"","",$FFFFFFFF,""
+EffectMode=None
+Tag=マスタ
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20230531125735
+Position="システム",666,289
+Position="予約管理",2823,1459
+ZOrder=56
+
+[Entity]
+PName=numbers
+LName=番号
+Comment=
+TableOption=
+Page=システム
+Left=568
+Top=543
+Field="番号ID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
+Field="番号識別キー","key","*識別キー","NOT NULL",,"","",$FFFFFFFF,""
+Field="値","value","*長番号","NOT NULL",,"","",$FFFFFFFF,""
+EffectMode=None
+Tag=マスタ
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20230531130827
+Position="システム",568,543
+ZOrder=57
+
+[View]
+PName=date_time_seats
+LName=日付時刻別座席
+Tag=ビュー
+Comment=
+ViewOption=
+Query=SELECT\n    T.id AS seat_id -- 座席ID\n    , T.seat_no -- 座席番号\n    , T.seat_group_no -- 座席グループ番号\n    , T1.id AS calendar_id -- カレンダーID\n    , T1.date -- 日付\n    , T1.year -- 年\n    , T1.month -- 月\n    , T1.day -- 日\n    , T1.weekday -- 曜日\n    , T2.id AS time_id -- 時刻ID\n    , T2.hour -- 時\n    , T2.minute -- 分\n    , T2.time -- 時刻\n    , T2.time_minutes -- 時刻(分)\nFROM\n    seats T \n    INNER JOIN calendars T1 ON (\n        T1.is_delete = T.is_delete\n    )\n    INNER JOIN times T2 ON (\n        T2.is_delete = T.is_delete\n    )\n\n
+LNameByComment=1
+Color=$000000
+BkColor=$FFFFFF
+Position="予約管理",2317,1225
+ZOrder=58
+Page=予約管理
+Left=2317
+Top=1225
+
+[Relation]
+Entity1=calendars
+Entity2=date_time_seats
+RelationType1=2
+RelationType2=3
+Fields1=id
+Fields2=calendar_id
+Cardinarity1=
+Cardinarity2=
+Position="予約管理",0,7573,5986,1889,R,R,""
+Position="メニュー管理",0,9054,1465,5500,L,R,""
+Position="システム",0,4265,5735,3005,R,R,""
+Dependence=0
+Caption=
+PName=
+NoDDL=1
+ModifiedDateTime=20230601104548
+LineMode=0
+Bar1=757
+Bar2=599
+Bar3=189
+TermPos1=R
+TermPos2=R
+ZOrder=59
+
+[Relation]
+Entity1=seats
+Entity2=date_time_seats
+RelationType1=2
+RelationType2=3
+Fields1=id
+Fields2=seat_id
+Cardinarity1=
+Cardinarity2=
+Position="予約管理",1,2040,7493,7250,R,R,""
+Position="システム",0,9500,500,9500,R,R,""
+Dependence=0
+Caption=
+PName=
+NoDDL=1
+ModifiedDateTime=20230601104638
+LineMode=1
+Bar1=204
+Bar2=749
+Bar3=725
+TermPos1=R
+TermPos2=R
+ZOrder=61
+
+[Relation]
+Entity1=calendars
+Entity2=empty_seats
+RelationType1=2
+RelationType2=3
+Fields1=id
+Fields2=calendar_id
+Cardinarity1=
+Cardinarity2=
+Position="予約管理",4,4332,4285,1489,R,R,""
+Position="メニュー管理",0,6909,1629,5500,L,R,""
+Position="システム",0,5274,4726,3005,R,R,""
+Dependence=0
+Caption=
+PName=
+NoDDL=1
+ModifiedDateTime=20230601140049
+LineMode=4
+Bar1=433
+Bar2=428
+Bar3=149
+TermPos1=R
+TermPos2=R
+ZOrder=63
+
+[Relation]
+Entity1=times
+Entity2=empty_seats
+RelationType1=2
+RelationType2=3
+Fields1=id
+Fields2=time_id
+Cardinarity1=
+Cardinarity2=
+Position="予約管理",0,5173,4726,9187,R,R,""
+Position="システム",0,8371,1629,2144,R,R,""
+Dependence=0
+Caption=
+PName=
+NoDDL=1
+ModifiedDateTime=20230601140046
+LineMode=0
+Bar1=517
+Bar2=473
+Bar3=919
+TermPos1=R
+TermPos2=R
+ZOrder=64
+
+[Relation]
+Entity1=times
+Entity2=date_time_seats
+RelationType1=2
+RelationType2=3
+Fields1=id
+Fields2=time_id
+Cardinarity1=
+Cardinarity2=
+Position="予約管理",0,5856,4562,8672,R,R,""
+Position="システム",0,8535,1465,2144,R,R,""
+Dependence=0
+Caption=
+PName=
+NoDDL=1
+ModifiedDateTime=20230601114231
+LineMode=0
+Bar1=586
+Bar2=456
+Bar3=867
+TermPos1=R
+TermPos2=R
+ZOrder=65
+
+[Entity]
+PName=empty_states
+LName=空き状況
+Comment=
+TableOption=
+Page=予約管理
+Left=2752
+Top=518
+Field="空き状況ID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
+Field="カレンダーID","calendar_id","*カレンダーID","NOT NULL",,"","",$FFFFFFFF,""
+Field="日付","date","*日付","NOT NULL",,"","",$FFFFFFFF,""
+Field="年","year","*西暦年","NOT NULL",,"","",$FFFFFFFF,""
+Field="月","month","*月","NOT NULL",,"","",$FFFFFFFF,""
+Field="日","day","*日","NOT NULL",,"","",$FFFFFFFF,""
+Field="曜日","weekday","*曜日","NOT NULL",,"","",$FFFFFFFF,""
+Field="時刻ID","time_id","*時刻ID","NOT NULL",,"","",$FFFFFFFF,""
+Field="時刻","time","*時刻","NOT NULL",,"","",$FFFFFFFF,""
+Field="時","hour","*時","NOT NULL",,"","",$FFFFFFFF,""
+Field="分","minute","*分","NOT NULL",,"","",$FFFFFFFF,""
+Field="時刻(分)","time_minutes","*分数","NOT NULL",,"","",$FFFFFFFF,""
+Field="座席数","seat_count","*数量","NOT NULL",,"","",$FFFFFFFF,""
+Field="空き座席数","empty_seat_count","*数量","NOT NULL",,"","",$FFFFFFFF,""
+Field="空き座席率","empty_seat_rate","*率(％)","NOT NULL",,"","",$FFFFFFFF,""
+EffectMode=None
+Tag=トランザクション
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20230601142155
+Position="予約管理",2752,518
+ZOrder=66
+
+[View]
+PName=valid_tickets
+LName=有効回数券
+Tag=ビュー
+Comment=
+ViewOption=
+Query=SELECT\n    T.id AS buy_ticket_id -- 購入回数券ID\n    , T.user_id -- ユーザーID\n    , T.buy_dt -- 購入日時\n    , T.ticket_id -- 回数券ID\n    , T.ticket_count -- 購入回数券枚数\n    , IFNULL(T1.use_ticket_count, 0) AS use_ticket_count -- 利用回数券枚数\n    , T.ticket_count - IFNULL(T1.use_ticket_count, 0) AS valid_ticket_count -- 有効回数券枚数\nFROM\n    buy_tickets T\n    LEFT OUTER JOIN (\n        SELECT\n            ST.buy_ticket_id\n            , COUNT(*) AS use_ticket_count\n        FROM\n            use_tickets ST\n        WHERE\n            ST.is_delete = 0\n        GROUP BY\n            ST.buy_ticket_id\n    ) T1 ON (\n        T1.buy_ticket_id = T.id\n    )\nWHERE\n    T.is_delete = 0\n
+LNameByComment=1
+Color=$000000
+BkColor=$FFFFFF
+Position="予約管理",1474,2240
+ZOrder=67
+Page=予約管理
+Left=1474
+Top=2240
+
+[Relation]
+Entity1=valid_tickets
+Entity2=use_tickets
+RelationType1=2
+RelationType2=3
+Fields1=buy_ticket_id
+Fields2=buy_ticket_id
+Cardinarity1=
+Cardinarity2=
+Position="予約管理",0,5054,4520,7021,R,R,""
+Dependence=0
+Caption=
+PName=
+NoDDL=1
+ModifiedDateTime=20230610135510
+LineMode=0
+Bar1=505
+Bar2=452
+Bar3=702
+TermPos1=R
+TermPos2=R
+ZOrder=68
+
+[Relation]
+Entity1=buy_tickets
+Entity2=valid_tickets
+RelationType1=2
+RelationType2=2
+Fields1=id
+Fields2=buy_ticket_id
+Cardinarity1=
+Cardinarity2=
+Position="ユーザー管理",0,6904,3096,5238,R,R,""
+Position="予約管理",0,3180,6153,6806,R,R,""
+Dependence=0
+Caption=
+PName=
+NoDDL=1
+ModifiedDateTime=20230610135500
+LineMode=0
+Bar1=690
+Bar2=310
+Bar3=524
+TermPos1=R
+TermPos2=R
+ZOrder=69
+
+[Relation]
+Entity1=users
+Entity2=valid_tickets
+RelationType1=2
+RelationType2=3
+Fields1=id
+Fields2=user_id
+Cardinarity1=
+Cardinarity2=
+Position="ユーザー管理",0,2344,3096,8879,L,R,""
+Position="予約管理",0,9585,4540,1729,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20230610140300
+LineMode=0
+Bar1=234
+Bar2=310
+Bar3=888
+TermPos1=L
+TermPos2=R
+ZOrder=70
+
+[Relation]
+Entity1=daily_dish_menus
+Entity2=dish_menus
+RelationType1=2
+RelationType2=3
+Fields1=calendar_id,dish_type
+Fields2=calendar_id,dish_type
+Cardinarity1=
+Cardinarity2=
+Position="メニュー管理",0,5157,4433,3633,R,R,""
+Dependence=0
+Caption=
+PName=
+NoDDL=1
+ModifiedDateTime=20230610165233
+LineMode=0
+Bar1=516
+Bar2=443
+Bar3=363
+TermPos1=R
+TermPos2=R
+ZOrder=71
+
+[Relation]
+Entity1=school_years
+Entity2=users
+RelationType1=1
+RelationType2=3
+Fields1=id
+Fields2=school_year_id
+Cardinarity1=
+Cardinarity2=
+Position="ユーザー管理",0,5047,4953,4131,R,R,""
+Position="予約管理",0,9500,500,4131,R,R,""
+Position="区分",0,4031,5969,5634,R,R,""
+Dependence=0
+Caption=
+PName=
+NoDDL=1
+ModifiedDateTime=20230613202949
+LineMode=0
+Bar1=505
+Bar2=495
+Bar3=413
+TermPos1=R
+TermPos2=R
+ZOrder=72
