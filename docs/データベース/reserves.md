@@ -9,7 +9,7 @@
 | 論理エンティティ名             | 予約                                                                                                 |
 | 物理エンティティ名             | reserves                                                                                             |
 | 作成者                         | Shuji Ushiyama                                                                                       |
-| 作成日                         | 2023/06/25                                                                                           |
+| 作成日                         | 2023/07/17                                                                                           |
 | タグ                           |                                                                                                      |
 
 
@@ -30,12 +30,13 @@
 |  10 | リマインド日時                 | remind_dt                      | DATETIME                       |          |                      |                                |
 |  11 | チェックイン日時               | checkin_dt                     | DATETIME                       |          |                      |                                |
 |  12 | 取消日時                       | cancel_dt                      | DATETIME                       |          |                      |                                |
-|  13 | 削除フラグ                     | is_delete                      | TINYINT                        | Yes      | 0                    |                                |
-|  14 | 登録ユーザーID                 | created_id                     | BIGINT                         |          |                      |                                |
-|  15 | 登録タイムスタンプ             | created_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|  16 | 更新ユーザーID                 | updated_id                     | BIGINT                         |          |                      |                                |
-|  17 | 更新タイムスタンプ             | updated_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|  18 | データ・バージョン             | data_version                   | BIGINT                         | Yes      | 1                    |                                |
+|  13 | 当日スルーフラグ               | is_through                     | TINYINT                        | Yes      | 0                    |                                |
+|  14 | 削除フラグ                     | is_delete                      | TINYINT                        | Yes      | 0                    |                                |
+|  15 | 登録ユーザーID                 | created_id                     | BIGINT                         |          |                      |                                |
+|  16 | 登録タイムスタンプ             | created_at                     | TIMESTAMP(6)                   |          |                      |                                |
+|  17 | 更新ユーザーID                 | updated_id                     | BIGINT                         |          |                      |                                |
+|  18 | 更新タイムスタンプ             | updated_at                     | TIMESTAMP(6)                   |          |                      |                                |
+|  19 | データ・バージョン             | data_version                   | BIGINT                         | Yes      | 1                    |                                |
 
 
 

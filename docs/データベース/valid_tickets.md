@@ -9,7 +9,7 @@
 | 論理エンティティ名             | 有効回数券                                                                                           |
 | 物理エンティティ名             | valid_tickets                                                                                        |
 | 作成者                         | Shuji Ushiyama                                                                                       |
-| 作成日                         | 2023/06/25                                                                                           |
+| 作成日                         | 2023/07/17                                                                                           |
 | タグ                           | ビュー                                                                                               |
 
 
@@ -55,6 +55,8 @@ FROM
     )
 WHERE
     T.is_delete = 0
+    AND T.payment_dt IS NOT NULL
+
 
 ```
 

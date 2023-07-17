@@ -9,7 +9,7 @@
 | 論理エンティティ名             | 利用回数券                                                                                           |
 | 物理エンティティ名             | use_tickets                                                                                          |
 | 作成者                         | Shuji Ushiyama                                                                                       |
-| 作成日                         | 2023/06/25                                                                                           |
+| 作成日                         | 2023/07/17                                                                                           |
 | タグ                           |                                                                                                      |
 
 
@@ -21,8 +21,8 @@
 |   1 | 利用回数券ID                   | id                             | BIGINT AUTO_INCREMENT          | Yes (PK) |                      |                                |
 |   2 | 予約ID                         | reserve_id                     | BIGINT                         | Yes      |                      |                                |
 |   3 | 利用者ID                       | user_id                        | BIGINT                         | Yes      |                      |                                |
-|   4 | 使用購入回数券ID               | buy_ticket_id                  | BIGINT                         | Yes      |                      |                                |
-|   5 | 利用日時                       | use_dt                         | DATETIME                       |          |                      |                                |
+|   4 | 使用購入回数券ID               | buy_ticket_id                  | BIGINT                         |          |                      |                                |
+|   5 | 利用日時                       | use_dt                         | DATETIME                       | Yes      |                      |                                |
 |   6 | 削除フラグ                     | is_delete                      | TINYINT                        | Yes      | 0                    |                                |
 |   7 | 登録ユーザーID                 | created_id                     | BIGINT                         |          |                      |                                |
 |   8 | 登録タイムスタンプ             | created_at                     | TIMESTAMP(6)                   |          |                      |                                |
