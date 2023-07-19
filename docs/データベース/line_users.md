@@ -9,7 +9,7 @@
 | 論理エンティティ名             | LINEユーザー                                                                                         |
 | 物理エンティティ名             | line_users                                                                                           |
 | 作成者                         | Shuji Ushiyama                                                                                       |
-| 作成日                         | 2023/07/17                                                                                           |
+| 作成日                         | 2023/07/19                                                                                           |
 | タグ                           |                                                                                                      |
 
 
@@ -18,21 +18,21 @@
 
 | No. | 論理名                         | 物理名                         | データ型                       | Not Null | デフォルト           | 備考                           |
 |----:|:-------------------------------|:-------------------------------|:-------------------------------|:---------|:---------------------|:-------------------------------|
-|   1 | LINEユーザーID                 | id                             | BIGINT AUTO_INCREMENT          | Yes (PK) |                      |                                |
-|   2 | LINE利用者ID                   | line_owner_id                  | TEXT                           | Yes      |                      |                                |
-|   3 | 識別トークン                   | token                          | VARCHAR(256)                   | Yes      |                      |                                |
-|   4 | IDトークン                     | id_token                       | TEXT                           |          |                      |                                |
-|   5 | アクセス・トークン             | access_token                   | VARCHAR(256)                   |          |                      |                                |
-|   6 | リフレッシュ・トークン         | refresh_token                  | VARCHAR(256)                   |          |                      |                                |
-|   7 | プロフィール画像URL            | profile_picture_url            | TEXT                           |          |                      |                                |
-|   8 | LINE名                         | display_name                   | TEXT                           |          |                      | LINE上での名称                 |
-|   9 | 画面URL                        | screen_path                    | VARCHAR(1024)                  |          |                      |                                |
-|  10 | 削除フラグ                     | is_delete                      | TINYINT                        | Yes      | 0                    |                                |
-|  11 | 登録ユーザーID                 | created_id                     | BIGINT                         |          |                      |                                |
-|  12 | 登録タイムスタンプ             | created_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|  13 | 更新ユーザーID                 | updated_id                     | BIGINT                         |          |                      |                                |
-|  14 | 更新タイムスタンプ             | updated_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|  15 | データ・バージョン             | data_version                   | BIGINT                         | Yes      | 1                    |                                |
+|   1 | LINEユーザーID                 | id                             | *自動ID                        | Yes (PK) |                      |                                |
+|   2 | LINE利用者ID                   | line_owner_id                  | *LINE利用者ID                  | Yes      |                      |                                |
+|   3 | 識別トークン                   | token                          | *トークン                      | Yes      |                      |                                |
+|   4 | IDトークン                     | id_token                       | *LINE IDトークン               |          |                      |                                |
+|   5 | アクセス・トークン             | access_token                   | *トークン                      |          |                      |                                |
+|   6 | リフレッシュ・トークン         | refresh_token                  | *トークン                      |          |                      |                                |
+|   7 | プロフィール画像URL            | profile_picture_url            | *URL                           |          |                      |                                |
+|   8 | LINE名                         | display_name                   | *名称                          |          |                      | LINE上での名称                 |
+|   9 | 画面URL                        | screen_path                    | *ファイル・パス                |          |                      |                                |
+|  10 | 削除フラグ                     | is_delete                      | *フラグ                        | Yes      | 0                    |                                |
+|  11 | 登録ユーザーID                 | created_id                     | *ユーザーID                    |          |                      |                                |
+|  12 | 登録タイムスタンプ             | created_at                     | *タイムスタンプ                |          |                      |                                |
+|  13 | 更新ユーザーID                 | updated_id                     | *ユーザーID                    |          |                      |                                |
+|  14 | 更新タイムスタンプ             | updated_at                     | *タイムスタンプ                |          |                      |                                |
+|  15 | データ・バージョン             | data_version                   | *リビジョン                    | Yes      | 1                    |                                |
 
 
 

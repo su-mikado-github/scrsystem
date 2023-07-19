@@ -9,7 +9,7 @@
 | 論理エンティティ名             | ユーザー                                                                                             |
 | 物理エンティティ名             | users                                                                                                |
 | 作成者                         | Shuji Ushiyama                                                                                       |
-| 作成日                         | 2023/07/17                                                                                           |
+| 作成日                         | 2023/07/19                                                                                           |
 | タグ                           |                                                                                                      |
 
 
@@ -18,33 +18,33 @@
 
 | No. | 論理名                         | 物理名                         | データ型                       | Not Null | デフォルト           | 備考                           |
 |----:|:-------------------------------|:-------------------------------|:-------------------------------|:---------|:---------------------|:-------------------------------|
-|   1 | ユーザーID                     | id                             | BIGINT AUTO_INCREMENT          | Yes (PK) |                      |                                |
-|   2 | 姓                             | last_name                      | TEXT                           |          |                      |                                |
-|   3 | 名                             | first_name                     | TEXT                           |          |                      |                                |
-|   4 | 姓かな                         | last_name_kana                 | TEXT                           |          |                      |                                |
-|   5 | 名かな                         | first_name_kana                | TEXT                           |          |                      |                                |
-|   6 | 誕生日                         | birthday                       | DATE                           |          |                      |                                |
-|   7 | 性別                           | sex                            | TINYINT                        |          |                      |                                |
-|   8 | メールアドレス                 | email                          | VARCHAR(256)                   |          |                      |                                |
-|   9 | 電話番号                       | telephone_no                   | VARCHAR(16)                    |          |                      |                                |
-|  10 | 学年ID                         | school_year_id                 | BIGINT                         |          |                      |                                |
-|  11 | 所属ID                         | affiliation_id                 | BIGINT                         |          |                      |                                |
-|  12 | 所属詳細ID                     | affiliation_detail_id          | BIGINT                         |          |                      |                                |
-|  13 | LINEユーザーID                 | line_user_id                   | BIGINT                         |          |                      |                                |
-|  14 | システム管理者フラグ           | is_admin                       | TINYINT                        | Yes      | 0                    | 0:一般 1:システム管理者        |
-|  15 | システム管理者パスワード       | admin_password                 | VARCHAR(256)                   | Yes      | '*'                  | 強制的に管理者でログインする場合のパスワード |
-|  16 | リセット・トークン             | reset_token                    | VARCHAR(256)                   |          |                      |                                |
-|  17 | 最終ログイン日時               | last_login_dt                  | DATETIME                       |          |                      |                                |
-|  18 | チェックイン・トークン         | checkin_token                  | VARCHAR(256)                   |          |                      |                                |
-|  19 | 初期設定済フラグ               | is_initial_setting             | TINYINT                        | Yes      | 0                    |                                |
-|  20 | 登録日                         | regist_date                    | DATE                           |          |                      |                                |
-|  21 | 退会日                         | unregist_date                  | DATE                           |          |                      |                                |
-|  22 | 削除フラグ                     | is_delete                      | TINYINT                        | Yes      | 0                    |                                |
-|  23 | 登録ユーザーID                 | created_id                     | BIGINT                         |          |                      |                                |
-|  24 | 登録タイムスタンプ             | created_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|  25 | 更新ユーザーID                 | updated_id                     | BIGINT                         |          |                      |                                |
-|  26 | 更新タイムスタンプ             | updated_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|  27 | データ・バージョン             | data_version                   | BIGINT                         | Yes      | 1                    |                                |
+|   1 | ユーザーID                     | id                             | *自動ID                        | Yes (PK) |                      |                                |
+|   2 | 姓                             | last_name                      | *名称                          |          |                      |                                |
+|   3 | 名                             | first_name                     | *名称                          |          |                      |                                |
+|   4 | 姓かな                         | last_name_kana                 | *名称かな                      |          |                      |                                |
+|   5 | 名かな                         | first_name_kana                | *名称かな                      |          |                      |                                |
+|   6 | 誕生日                         | birthday                       | *日付                          |          |                      |                                |
+|   7 | 性別                           | sex                            | *性別                          |          |                      |                                |
+|   8 | メールアドレス                 | email                          | *メールアドレス                |          |                      |                                |
+|   9 | 電話番号                       | telephone_no                   | *電話番号ハイフンなし          |          |                      |                                |
+|  10 | 学年ID                         | school_year_id                 | *学年ID                        |          |                      |                                |
+|  11 | 所属ID                         | affiliation_id                 | *所属ID                        |          |                      |                                |
+|  12 | 所属詳細ID                     | affiliation_detail_id          | *所属ID                        |          |                      |                                |
+|  13 | LINEユーザーID                 | line_user_id                   | *LINEユーザーID                |          |                      |                                |
+|  14 | システム管理者フラグ           | is_admin                       | *フラグ                        | Yes      | 0                    | 0:一般 1:システム管理者        |
+|  15 | システム管理者パスワード       | admin_password                 | *パスワード                    | Yes      | '*'                  | 強制的に管理者でログインする場合のパスワード |
+|  16 | リセット・トークン             | reset_token                    | *トークン                      |          |                      |                                |
+|  17 | 最終ログイン日時               | last_login_dt                  | *日時                          |          |                      |                                |
+|  18 | チェックイン・トークン         | checkin_token                  | *トークン                      |          |                      |                                |
+|  19 | 初期設定済フラグ               | is_initial_setting             | *フラグ                        | Yes      | 0                    |                                |
+|  20 | 登録日                         | regist_date                    | *日付                          |          |                      |                                |
+|  21 | 退会日                         | unregist_date                  | *日付                          |          |                      |                                |
+|  22 | 削除フラグ                     | is_delete                      | *フラグ                        | Yes      | 0                    |                                |
+|  23 | 登録ユーザーID                 | created_id                     | *ユーザーID                    |          |                      |                                |
+|  24 | 登録タイムスタンプ             | created_at                     | *タイムスタンプ                |          |                      |                                |
+|  25 | 更新ユーザーID                 | updated_id                     | *ユーザーID                    |          |                      |                                |
+|  26 | 更新タイムスタンプ             | updated_at                     | *タイムスタンプ                |          |                      |                                |
+|  27 | データ・バージョン             | data_version                   | *リビジョン                    | Yes      | 1                    |                                |
 
 
 

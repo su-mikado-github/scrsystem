@@ -9,7 +9,7 @@
 | 論理エンティティ名             | 購入回数券                                                                                           |
 | 物理エンティティ名             | buy_tickets                                                                                          |
 | 作成者                         | Shuji Ushiyama                                                                                       |
-| 作成日                         | 2023/07/17                                                                                           |
+| 作成日                         | 2023/07/19                                                                                           |
 | タグ                           |                                                                                                      |
 
 
@@ -18,19 +18,22 @@
 
 | No. | 論理名                         | 物理名                         | データ型                       | Not Null | デフォルト           | 備考                           |
 |----:|:-------------------------------|:-------------------------------|:-------------------------------|:---------|:---------------------|:-------------------------------|
-|   1 | 購入回数券ID                   | id                             | BIGINT AUTO_INCREMENT          | Yes (PK) |                      |                                |
-|   2 | 購入者ID                       | user_id                        | BIGINT                         | Yes      |                      |                                |
-|   3 | 購入日時                       | buy_dt                         | DATETIME                       | Yes      |                      |                                |
-|   4 | 回数券ID                       | ticket_id                      | BIGINT                         | Yes      |                      |                                |
-|   5 | 購入枚数                       | ticket_count                   | INT                            | Yes      |                      |                                |
-|   6 | 支払日時                       | payment_dt                     | DATETIME                       |          |                      |                                |
-|   7 | 支払金額                       | payment_amount                 | INT                            |          |                      |                                |
-|   8 | 削除フラグ                     | is_delete                      | TINYINT                        | Yes      | 0                    |                                |
-|   9 | 登録ユーザーID                 | created_id                     | BIGINT                         |          |                      |                                |
-|  10 | 登録タイムスタンプ             | created_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|  11 | 更新ユーザーID                 | updated_id                     | BIGINT                         |          |                      |                                |
-|  12 | 更新タイムスタンプ             | updated_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|  13 | データ・バージョン             | data_version                   | BIGINT                         | Yes      | 1                    |                                |
+|   1 | 購入回数券ID                   | id                             | *自動ID                        | Yes (PK) |                      |                                |
+|   2 | 購入者ID                       | user_id                        | *ユーザーID                    | Yes      |                      |                                |
+|   3 | 購入日時                       | buy_dt                         | *日時                          | Yes      |                      |                                |
+|   4 | 回数券ID                       | ticket_id                      | *回数券ID                      | Yes      |                      |                                |
+|   5 | 購入枚数                       | ticket_count                   | *数量                          | Yes      |                      |                                |
+|   6 | 購入年                         | buy_year                       | *西暦年                        |          |                      |                                |
+|   7 | 購入月                         | buy_month                      | *月                            |          |                      |                                |
+|   8 | 購入日                         | buy_day                        | *日                            |          |                      |                                |
+|   9 | 支払日時                       | payment_dt                     | *日時                          |          |                      |                                |
+|  10 | 支払金額                       | payment_amount                 | *金額                          |          |                      |                                |
+|  11 | 削除フラグ                     | is_delete                      | *フラグ                        | Yes      | 0                    |                                |
+|  12 | 登録ユーザーID                 | created_id                     | *ユーザーID                    |          |                      |                                |
+|  13 | 登録タイムスタンプ             | created_at                     | *タイムスタンプ                |          |                      |                                |
+|  14 | 更新ユーザーID                 | updated_id                     | *ユーザーID                    |          |                      |                                |
+|  15 | 更新タイムスタンプ             | updated_at                     | *タイムスタンプ                |          |                      |                                |
+|  16 | データ・バージョン             | data_version                   | *リビジョン                    | Yes      | 1                    |                                |
 
 
 

@@ -9,7 +9,7 @@
 | 論理エンティティ名             | 料理カレンダー                                                                                       |
 | 物理エンティティ名             | dish_calendars                                                                                       |
 | 作成者                         | Shuji Ushiyama                                                                                       |
-| 作成日                         | 2023/07/17                                                                                           |
+| 作成日                         | 2023/07/19                                                                                           |
 | タグ                           |                                                                                                      |
 
 
@@ -18,16 +18,16 @@
 
 | No. | 論理名                         | 物理名                         | データ型                       | Not Null | デフォルト           | 備考                           |
 |----:|:-------------------------------|:-------------------------------|:-------------------------------|:---------|:---------------------|:-------------------------------|
-|   1 | 料理カレンダーID               | id                             | BIGINT AUTO_INCREMENT          | Yes (PK) |                      |                                |
-|   2 | カレンダーID                   | calendar_id                    | BIGINT                         | Yes      |                      |                                |
-|   3 | 料理種類                       | dish_type                      | TINYINT                        | Yes      |                      |                                |
-|   4 | 表示順                         | display_order                  | INT                            | Yes      | 0                    |                                |
-|   5 | 削除フラグ                     | is_delete                      | TINYINT                        | Yes      | 0                    |                                |
-|   6 | 登録ユーザーID                 | created_id                     | BIGINT                         |          |                      |                                |
-|   7 | 登録タイムスタンプ             | created_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|   8 | 更新ユーザーID                 | updated_id                     | BIGINT                         |          |                      |                                |
-|   9 | 更新タイムスタンプ             | updated_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|  10 | データ・バージョン             | data_version                   | BIGINT                         | Yes      | 1                    |                                |
+|   1 | 料理カレンダーID               | id                             | *自動ID                        | Yes (PK) |                      |                                |
+|   2 | カレンダーID                   | calendar_id                    | *カレンダーID                  | Yes      |                      |                                |
+|   3 | 料理種類                       | dish_type                      | *料理種類                      | Yes      |                      |                                |
+|   4 | 表示順                         | display_order                  | *順序                          | Yes      | 0                    |                                |
+|   5 | 削除フラグ                     | is_delete                      | *フラグ                        | Yes      | 0                    |                                |
+|   6 | 登録ユーザーID                 | created_id                     | *ユーザーID                    |          |                      |                                |
+|   7 | 登録タイムスタンプ             | created_at                     | *タイムスタンプ                |          |                      |                                |
+|   8 | 更新ユーザーID                 | updated_id                     | *ユーザーID                    |          |                      |                                |
+|   9 | 更新タイムスタンプ             | updated_at                     | *タイムスタンプ                |          |                      |                                |
+|  10 | データ・バージョン             | data_version                   | *リビジョン                    | Yes      | 1                    |                                |
 
 
 

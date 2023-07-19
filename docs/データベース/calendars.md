@@ -9,7 +9,7 @@
 | 論理エンティティ名             | カレンダー                                                                                           |
 | 物理エンティティ名             | calendars                                                                                            |
 | 作成者                         | Shuji Ushiyama                                                                                       |
-| 作成日                         | 2023/07/17                                                                                           |
+| 作成日                         | 2023/07/19                                                                                           |
 | タグ                           | マスタ                                                                                               |
 
 
@@ -18,22 +18,22 @@
 
 | No. | 論理名                         | 物理名                         | データ型                       | Not Null | デフォルト           | 備考                           |
 |----:|:-------------------------------|:-------------------------------|:-------------------------------|:---------|:---------------------|:-------------------------------|
-|   1 | カレンダーID                   | id                             | BIGINT AUTO_INCREMENT          | Yes (PK) |                      |                                |
-|   2 | 日付                           | date                           | DATE                           | Yes      |                      |                                |
-|   3 | 年                             | year                           | INT                            | Yes      |                      |                                |
-|   4 | 月                             | month                          | TINYINT                        | Yes      |                      |                                |
-|   5 | 日                             | day                            | TINYINT                        | Yes      |                      |                                |
-|   6 | 曜日                           | weekday                        | TINYINT                        | Yes      |                      |                                |
-|   7 | 曜日月内回数                   | week_of_month                  | INT                            | Yes      |                      | 月内で何回目の曜日かを示す     |
-|   8 | 曜日年内回数                   | week_of_year                   | INT                            | Yes      |                      | 年内で何回目の曜日かを示す     |
-|   9 | 祝日フラグ                     | is_holiday                     | TINYINT                        | Yes      | 0                    | 0:通常日 1:祝日                |
-|  10 | 祝日名                         | holiday_name                   | TEXT                           |          |                      |                                |
-|  11 | 削除フラグ                     | is_delete                      | TINYINT                        | Yes      | 0                    |                                |
-|  12 | 登録ユーザーID                 | created_id                     | BIGINT                         |          |                      |                                |
-|  13 | 登録タイムスタンプ             | created_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|  14 | 更新ユーザーID                 | updated_id                     | BIGINT                         |          |                      |                                |
-|  15 | 更新タイムスタンプ             | updated_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|  16 | データ・バージョン             | data_version                   | BIGINT                         | Yes      | 1                    |                                |
+|   1 | カレンダーID                   | id                             | *自動ID                        | Yes (PK) |                      |                                |
+|   2 | 日付                           | date                           | *日付                          | Yes      |                      |                                |
+|   3 | 年                             | year                           | *西暦年                        | Yes      |                      |                                |
+|   4 | 月                             | month                          | *月                            | Yes      |                      |                                |
+|   5 | 日                             | day                            | *日                            | Yes      |                      |                                |
+|   6 | 曜日                           | weekday                        | *曜日                          | Yes      |                      |                                |
+|   7 | 曜日月内回数                   | week_of_month                  | *番号                          | Yes      |                      | 月内で何回目の曜日かを示す     |
+|   8 | 曜日年内回数                   | week_of_year                   | *番号                          | Yes      |                      | 年内で何回目の曜日かを示す     |
+|   9 | 祝日フラグ                     | is_holiday                     | *フラグ                        | Yes      | 0                    | 0:通常日 1:祝日                |
+|  10 | 祝日名                         | holiday_name                   | *名称                          |          |                      |                                |
+|  11 | 削除フラグ                     | is_delete                      | *フラグ                        | Yes      | 0                    |                                |
+|  12 | 登録ユーザーID                 | created_id                     | *ユーザーID                    |          |                      |                                |
+|  13 | 登録タイムスタンプ             | created_at                     | *タイムスタンプ                |          |                      |                                |
+|  14 | 更新ユーザーID                 | updated_id                     | *ユーザーID                    |          |                      |                                |
+|  15 | 更新タイムスタンプ             | updated_at                     | *タイムスタンプ                |          |                      |                                |
+|  16 | データ・バージョン             | data_version                   | *リビジョン                    | Yes      | 1                    |                                |
 
 
 

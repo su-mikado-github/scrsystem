@@ -9,7 +9,7 @@
 | 論理エンティティ名             | 予約                                                                                                 |
 | 物理エンティティ名             | reserves                                                                                             |
 | 作成者                         | Shuji Ushiyama                                                                                       |
-| 作成日                         | 2023/07/17                                                                                           |
+| 作成日                         | 2023/07/19                                                                                           |
 | タグ                           |                                                                                                      |
 
 
@@ -18,25 +18,25 @@
 
 | No. | 論理名                         | 物理名                         | データ型                       | Not Null | デフォルト           | 備考                           |
 |----:|:-------------------------------|:-------------------------------|:-------------------------------|:---------|:---------------------|:-------------------------------|
-|   1 | 予約ID                         | id                             | BIGINT AUTO_INCREMENT          | Yes (PK) |                      |                                |
-|   2 | 種別                           | type                           | INT                            | Yes      |                      | 1:お弁当 2:来店(サッカー部) 3:来店(サッカー部以外) |
-|   3 | 利用日                         | date                           | DATE                           | Yes      |                      |                                |
-|   4 | 利用時刻                       | time                           | TIME                           |          |                      |                                |
-|   5 | 利用終了時刻                   | end_time                       | TIME                           |          |                      |                                |
-|   6 | 利用者ID                       | user_id                        | BIGINT                         | Yes      |                      |                                |
-|   7 | 予約日時                       | reserve_dt                     | DATETIME                       | Yes      |                      |                                |
-|   8 | 予約数                         | reserve_count                  | INT                            | Yes      |                      |                                |
-|   9 | 相席可フラグ                   | is_table_share                 | TINYINT                        | Yes      | 0                    | 0:相席不可 1:相席可            |
-|  10 | リマインド日時                 | remind_dt                      | DATETIME                       |          |                      |                                |
-|  11 | チェックイン日時               | checkin_dt                     | DATETIME                       |          |                      |                                |
-|  12 | 取消日時                       | cancel_dt                      | DATETIME                       |          |                      |                                |
-|  13 | 当日スルーフラグ               | is_through                     | TINYINT                        | Yes      | 0                    |                                |
-|  14 | 削除フラグ                     | is_delete                      | TINYINT                        | Yes      | 0                    |                                |
-|  15 | 登録ユーザーID                 | created_id                     | BIGINT                         |          |                      |                                |
-|  16 | 登録タイムスタンプ             | created_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|  17 | 更新ユーザーID                 | updated_id                     | BIGINT                         |          |                      |                                |
-|  18 | 更新タイムスタンプ             | updated_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|  19 | データ・バージョン             | data_version                   | BIGINT                         | Yes      | 1                    |                                |
+|   1 | 予約ID                         | id                             | *自動ID                        | Yes (PK) |                      |                                |
+|   2 | 種別                           | type                           | *予約種別                      | Yes      |                      | 1:お弁当 2:来店(サッカー部) 3:来店(サッカー部以外) |
+|   3 | 利用日                         | date                           | *日付                          | Yes      |                      |                                |
+|   4 | 利用時刻                       | time                           | *時刻                          |          |                      |                                |
+|   5 | 利用終了時刻                   | end_time                       | *時刻                          |          |                      |                                |
+|   6 | 利用者ID                       | user_id                        | *ユーザーID                    | Yes      |                      |                                |
+|   7 | 予約日時                       | reserve_dt                     | *日時                          | Yes      |                      |                                |
+|   8 | 予約数                         | reserve_count                  | *数量                          | Yes      |                      |                                |
+|   9 | 相席可フラグ                   | is_table_share                 | *フラグ                        | Yes      | 0                    | 0:相席不可 1:相席可            |
+|  10 | リマインド日時                 | remind_dt                      | *日時                          |          |                      |                                |
+|  11 | チェックイン日時               | checkin_dt                     | *日時                          |          |                      |                                |
+|  12 | 取消日時                       | cancel_dt                      | *日時                          |          |                      |                                |
+|  13 | 当日スルーフラグ               | is_through                     | *フラグ                        | Yes      | 0                    |                                |
+|  14 | 削除フラグ                     | is_delete                      | *フラグ                        | Yes      | 0                    |                                |
+|  15 | 登録ユーザーID                 | created_id                     | *ユーザーID                    |          |                      |                                |
+|  16 | 登録タイムスタンプ             | created_at                     | *タイムスタンプ                |          |                      |                                |
+|  17 | 更新ユーザーID                 | updated_id                     | *ユーザーID                    |          |                      |                                |
+|  18 | 更新タイムスタンプ             | updated_at                     | *タイムスタンプ                |          |                      |                                |
+|  19 | データ・バージョン             | data_version                   | *リビジョン                    | Yes      | 1                    |                                |
 
 
 

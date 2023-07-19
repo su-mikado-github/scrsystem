@@ -9,7 +9,7 @@
 | 論理エンティティ名             | 料理メニュー                                                                                         |
 | 物理エンティティ名             | dish_menus                                                                                           |
 | 作成者                         | Shuji Ushiyama                                                                                       |
-| 作成日                         | 2023/07/17                                                                                           |
+| 作成日                         | 2023/07/19                                                                                           |
 | タグ                           |                                                                                                      |
 
 
@@ -18,22 +18,22 @@
 
 | No. | 論理名                         | 物理名                         | データ型                       | Not Null | デフォルト           | 備考                           |
 |----:|:-------------------------------|:-------------------------------|:-------------------------------|:---------|:---------------------|:-------------------------------|
-|   1 | 料理メニューID                 | id                             | BIGINT AUTO_INCREMENT          | Yes (PK) |                      |                                |
-|   2 | カレンダーID                   | calendar_id                    | BIGINT                         | Yes      |                      |                                |
-|   3 | 料理種類                       | dish_type                      | TINYINT                        | Yes      |                      |                                |
-|   4 | 表示順                         | display_order                  | INT                            | Yes      | 0                    |                                |
-|   5 | 名称                           | name                           | TEXT                           | Yes      |                      |                                |
-|   6 | エネルギー                     | energy                         | DOUBLE                         | Yes      | 0.0                  |                                |
-|   7 | 炭水化物                       | carbohydrates                  | DOUBLE                         | Yes      | 0.0                  |                                |
-|   8 | たんぱく質                     | protein                        | DOUBLE                         | Yes      | 0.0                  |                                |
-|   9 | 脂質                           | lipid                          | DOUBLE                         | Yes      | 0.0                  |                                |
-|  10 | 食物繊維                       | dietary_fiber                  | DOUBLE                         | Yes      | 0.0                  |                                |
-|  11 | 削除フラグ                     | is_delete                      | TINYINT                        | Yes      | 0                    |                                |
-|  12 | 登録ユーザーID                 | created_id                     | BIGINT                         |          |                      |                                |
-|  13 | 登録タイムスタンプ             | created_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|  14 | 更新ユーザーID                 | updated_id                     | BIGINT                         |          |                      |                                |
-|  15 | 更新タイムスタンプ             | updated_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|  16 | データ・バージョン             | data_version                   | BIGINT                         | Yes      | 1                    |                                |
+|   1 | 料理メニューID                 | id                             | *自動ID                        | Yes (PK) |                      |                                |
+|   2 | カレンダーID                   | calendar_id                    | *カレンダーID                  | Yes      |                      |                                |
+|   3 | 料理種類                       | dish_type                      | *料理種類                      | Yes      |                      |                                |
+|   4 | 表示順                         | display_order                  | *順序                          | Yes      | 0                    |                                |
+|   5 | 名称                           | name                           | *名称                          | Yes      |                      |                                |
+|   6 | エネルギー                     | energy                         | *カロリー(kcal)                | Yes      | 0.0                  |                                |
+|   7 | 炭水化物                       | carbohydrates                  | *重さ(g)                       | Yes      | 0.0                  |                                |
+|   8 | たんぱく質                     | protein                        | *重さ(g)                       | Yes      | 0.0                  |                                |
+|   9 | 脂質                           | lipid                          | *重さ(g)                       | Yes      | 0.0                  |                                |
+|  10 | 食物繊維                       | dietary_fiber                  | *重さ(g)                       | Yes      | 0.0                  |                                |
+|  11 | 削除フラグ                     | is_delete                      | *フラグ                        | Yes      | 0                    |                                |
+|  12 | 登録ユーザーID                 | created_id                     | *ユーザーID                    |          |                      |                                |
+|  13 | 登録タイムスタンプ             | created_at                     | *タイムスタンプ                |          |                      |                                |
+|  14 | 更新ユーザーID                 | updated_id                     | *ユーザーID                    |          |                      |                                |
+|  15 | 更新タイムスタンプ             | updated_at                     | *タイムスタンプ                |          |                      |                                |
+|  16 | データ・バージョン             | data_version                   | *リビジョン                    | Yes      | 1                    |                                |
 
 
 

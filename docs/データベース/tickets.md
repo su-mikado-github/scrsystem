@@ -9,7 +9,7 @@
 | 論理エンティティ名             | 回数券                                                                                               |
 | 物理エンティティ名             | tickets                                                                                              |
 | 作成者                         | Shuji Ushiyama                                                                                       |
-| 作成日                         | 2023/07/17                                                                                           |
+| 作成日                         | 2023/07/19                                                                                           |
 | タグ                           | マスタ                                                                                               |
 
 
@@ -18,16 +18,16 @@
 
 | No. | 論理名                         | 物理名                         | データ型                       | Not Null | デフォルト           | 備考                           |
 |----:|:-------------------------------|:-------------------------------|:-------------------------------|:---------|:---------------------|:-------------------------------|
-|   1 | 回数券ID                       | id                             | BIGINT AUTO_INCREMENT          | Yes (PK) |                      |                                |
-|   2 | 名称                           | name                           | TEXT                           | Yes      |                      |                                |
-|   3 | 枚数                           | ticket_count                   | INT                            | Yes      |                      |                                |
-|   4 | 表示順                         | display_order                  | INT                            | Yes      | 0                    |                                |
-|   5 | 削除フラグ                     | is_delete                      | TINYINT                        | Yes      | 0                    |                                |
-|   6 | 登録ユーザーID                 | created_id                     | BIGINT                         |          |                      |                                |
-|   7 | 登録タイムスタンプ             | created_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|   8 | 更新ユーザーID                 | updated_id                     | BIGINT                         |          |                      |                                |
-|   9 | 更新タイムスタンプ             | updated_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|  10 | データ・バージョン             | data_version                   | BIGINT                         | Yes      | 1                    |                                |
+|   1 | 回数券ID                       | id                             | *自動ID                        | Yes (PK) |                      |                                |
+|   2 | 名称                           | name                           | *名称                          | Yes      |                      |                                |
+|   3 | 枚数                           | ticket_count                   | *数量                          | Yes      |                      |                                |
+|   4 | 表示順                         | display_order                  | *順序                          | Yes      | 0                    |                                |
+|   5 | 削除フラグ                     | is_delete                      | *フラグ                        | Yes      | 0                    |                                |
+|   6 | 登録ユーザーID                 | created_id                     | *ユーザーID                    |          |                      |                                |
+|   7 | 登録タイムスタンプ             | created_at                     | *タイムスタンプ                |          |                      |                                |
+|   8 | 更新ユーザーID                 | updated_id                     | *ユーザーID                    |          |                      |                                |
+|   9 | 更新タイムスタンプ             | updated_at                     | *タイムスタンプ                |          |                      |                                |
+|  10 | データ・バージョン             | data_version                   | *リビジョン                    | Yes      | 1                    |                                |
 
 
 

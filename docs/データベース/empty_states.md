@@ -9,7 +9,7 @@
 | 論理エンティティ名             | 空き状況                                                                                             |
 | 物理エンティティ名             | empty_states                                                                                         |
 | 作成者                         | Shuji Ushiyama                                                                                       |
-| 作成日                         | 2023/07/17                                                                                           |
+| 作成日                         | 2023/07/19                                                                                           |
 | タグ                           | トランザクション                                                                                     |
 
 
@@ -18,27 +18,27 @@
 
 | No. | 論理名                         | 物理名                         | データ型                       | Not Null | デフォルト           | 備考                           |
 |----:|:-------------------------------|:-------------------------------|:-------------------------------|:---------|:---------------------|:-------------------------------|
-|   1 | 空き状況ID                     | id                             | BIGINT AUTO_INCREMENT          | Yes (PK) |                      |                                |
-|   2 | カレンダーID                   | calendar_id                    | BIGINT                         | Yes      |                      |                                |
-|   3 | 日付                           | date                           | DATE                           | Yes      |                      |                                |
-|   4 | 年                             | year                           | INT                            | Yes      |                      |                                |
-|   5 | 月                             | month                          | TINYINT                        | Yes      |                      |                                |
-|   6 | 日                             | day                            | TINYINT                        | Yes      |                      |                                |
-|   7 | 曜日                           | weekday                        | TINYINT                        | Yes      |                      |                                |
-|   8 | 時刻ID                         | time_id                        | BIGINT                         | Yes      |                      |                                |
-|   9 | 時刻                           | time                           | TIME                           | Yes      |                      |                                |
-|  10 | 時                             | hour                           | INT                            | Yes      |                      |                                |
-|  11 | 分                             | minute                         | INT                            | Yes      |                      |                                |
-|  12 | 時刻(分)                       | time_minutes                   | INT                            | Yes      |                      |                                |
-|  13 | 座席数                         | seat_count                     | INT                            | Yes      |                      |                                |
-|  14 | 空き座席数                     | empty_seat_count               | INT                            | Yes      |                      |                                |
-|  15 | 空き座席率                     | empty_seat_rate                | INT                            | Yes      |                      |                                |
-|  16 | 削除フラグ                     | is_delete                      | TINYINT                        | Yes      | 0                    |                                |
-|  17 | 登録ユーザーID                 | created_id                     | BIGINT                         |          |                      |                                |
-|  18 | 登録タイムスタンプ             | created_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|  19 | 更新ユーザーID                 | updated_id                     | BIGINT                         |          |                      |                                |
-|  20 | 更新タイムスタンプ             | updated_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|  21 | データ・バージョン             | data_version                   | BIGINT                         | Yes      | 1                    |                                |
+|   1 | 空き状況ID                     | id                             | *自動ID                        | Yes (PK) |                      |                                |
+|   2 | カレンダーID                   | calendar_id                    | *カレンダーID                  | Yes      |                      |                                |
+|   3 | 日付                           | date                           | *日付                          | Yes      |                      |                                |
+|   4 | 年                             | year                           | *西暦年                        | Yes      |                      |                                |
+|   5 | 月                             | month                          | *月                            | Yes      |                      |                                |
+|   6 | 日                             | day                            | *日                            | Yes      |                      |                                |
+|   7 | 曜日                           | weekday                        | *曜日                          | Yes      |                      |                                |
+|   8 | 時刻ID                         | time_id                        | *時刻ID                        | Yes      |                      |                                |
+|   9 | 時刻                           | time                           | *時刻                          | Yes      |                      |                                |
+|  10 | 時                             | hour                           | *時                            | Yes      |                      |                                |
+|  11 | 分                             | minute                         | *分                            | Yes      |                      |                                |
+|  12 | 時刻(分)                       | time_minutes                   | *分数                          | Yes      |                      |                                |
+|  13 | 座席数                         | seat_count                     | *数量                          | Yes      |                      |                                |
+|  14 | 空き座席数                     | empty_seat_count               | *数量                          | Yes      |                      |                                |
+|  15 | 空き座席率                     | empty_seat_rate                | *率(％)                        | Yes      |                      |                                |
+|  16 | 削除フラグ                     | is_delete                      | *フラグ                        | Yes      | 0                    |                                |
+|  17 | 登録ユーザーID                 | created_id                     | *ユーザーID                    |          |                      |                                |
+|  18 | 登録タイムスタンプ             | created_at                     | *タイムスタンプ                |          |                      |                                |
+|  19 | 更新ユーザーID                 | updated_id                     | *ユーザーID                    |          |                      |                                |
+|  20 | 更新タイムスタンプ             | updated_at                     | *タイムスタンプ                |          |                      |                                |
+|  21 | データ・バージョン             | data_version                   | *リビジョン                    | Yes      | 1                    |                                |
 
 
 

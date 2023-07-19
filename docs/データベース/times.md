@@ -9,7 +9,7 @@
 | 論理エンティティ名             | 時刻                                                                                                 |
 | 物理エンティティ名             | times                                                                                                |
 | 作成者                         | Shuji Ushiyama                                                                                       |
-| 作成日                         | 2023/07/17                                                                                           |
+| 作成日                         | 2023/07/19                                                                                           |
 | タグ                           | マスタ                                                                                               |
 
 
@@ -18,17 +18,17 @@
 
 | No. | 論理名                         | 物理名                         | データ型                       | Not Null | デフォルト           | 備考                           |
 |----:|:-------------------------------|:-------------------------------|:-------------------------------|:---------|:---------------------|:-------------------------------|
-|   1 | 時刻ID                         | id                             | BIGINT AUTO_INCREMENT          | Yes (PK) |                      |                                |
-|   2 | 時刻                           | time                           | TIME                           | Yes      |                      |                                |
-|   3 | 時                             | hour                           | INT                            |          |                      |                                |
-|   4 | 分                             | minute                         | INT                            |          |                      |                                |
-|   5 | 時刻（分）                     | time_minutes                   | INT                            | Yes      |                      |                                |
-|   6 | 削除フラグ                     | is_delete                      | TINYINT                        | Yes      | 0                    |                                |
-|   7 | 登録ユーザーID                 | created_id                     | BIGINT                         |          |                      |                                |
-|   8 | 登録タイムスタンプ             | created_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|   9 | 更新ユーザーID                 | updated_id                     | BIGINT                         |          |                      |                                |
-|  10 | 更新タイムスタンプ             | updated_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|  11 | データ・バージョン             | data_version                   | BIGINT                         | Yes      | 1                    |                                |
+|   1 | 時刻ID                         | id                             | *自動ID                        | Yes (PK) |                      |                                |
+|   2 | 時刻                           | time                           | *時刻                          | Yes      |                      |                                |
+|   3 | 時                             | hour                           | *時                            |          |                      |                                |
+|   4 | 分                             | minute                         | *分                            |          |                      |                                |
+|   5 | 時刻（分）                     | time_minutes                   | *分                            | Yes      |                      |                                |
+|   6 | 削除フラグ                     | is_delete                      | *フラグ                        | Yes      | 0                    |                                |
+|   7 | 登録ユーザーID                 | created_id                     | *ユーザーID                    |          |                      |                                |
+|   8 | 登録タイムスタンプ             | created_at                     | *タイムスタンプ                |          |                      |                                |
+|   9 | 更新ユーザーID                 | updated_id                     | *ユーザーID                    |          |                      |                                |
+|  10 | 更新タイムスタンプ             | updated_at                     | *タイムスタンプ                |          |                      |                                |
+|  11 | データ・バージョン             | data_version                   | *リビジョン                    | Yes      | 1                    |                                |
 
 
 

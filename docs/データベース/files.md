@@ -9,7 +9,7 @@
 | 論理エンティティ名             | ファイル                                                                                             |
 | 物理エンティティ名             | files                                                                                                |
 | 作成者                         | Shuji Ushiyama                                                                                       |
-| 作成日                         | 2023/07/17                                                                                           |
+| 作成日                         | 2023/07/19                                                                                           |
 | タグ                           |                                                                                                      |
 
 
@@ -18,16 +18,16 @@
 
 | No. | 論理名                         | 物理名                         | データ型                       | Not Null | デフォルト           | 備考                           |
 |----:|:-------------------------------|:-------------------------------|:-------------------------------|:---------|:---------------------|:-------------------------------|
-|   1 | ファイルID                     | id                             | BIGINT AUTO_INCREMENT          | Yes (PK) |                      |                                |
-|   2 | パス                           | path                           | VARCHAR(1024)                  | Yes      |                      |                                |
-|   3 | ファイル名                     | name                           | TEXT                           |          |                      | 画面に表示する場合などに使用される名称 |
-|   4 | MIMEタイプ                     | mime_type                      | VARCHAR(256)                   | Yes      | 'application/octet-stream' |                                |
-|   5 | 削除フラグ                     | is_delete                      | TINYINT                        | Yes      | 0                    |                                |
-|   6 | 登録ユーザーID                 | created_id                     | BIGINT                         |          |                      |                                |
-|   7 | 登録タイムスタンプ             | created_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|   8 | 更新ユーザーID                 | updated_id                     | BIGINT                         |          |                      |                                |
-|   9 | 更新タイムスタンプ             | updated_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|  10 | データ・バージョン             | data_version                   | BIGINT                         | Yes      | 1                    |                                |
+|   1 | ファイルID                     | id                             | *自動ID                        | Yes (PK) |                      |                                |
+|   2 | パス                           | path                           | *ファイル・パス                | Yes      |                      |                                |
+|   3 | ファイル名                     | name                           | *名称                          |          |                      | 画面に表示する場合などに使用される名称 |
+|   4 | MIMEタイプ                     | mime_type                      | *MIMEタイプ                    | Yes      | 'application/octet-stream' |                                |
+|   5 | 削除フラグ                     | is_delete                      | *フラグ                        | Yes      | 0                    |                                |
+|   6 | 登録ユーザーID                 | created_id                     | *ユーザーID                    |          |                      |                                |
+|   7 | 登録タイムスタンプ             | created_at                     | *タイムスタンプ                |          |                      |                                |
+|   8 | 更新ユーザーID                 | updated_id                     | *ユーザーID                    |          |                      |                                |
+|   9 | 更新タイムスタンプ             | updated_at                     | *タイムスタンプ                |          |                      |                                |
+|  10 | データ・バージョン             | data_version                   | *リビジョン                    | Yes      | 1                    |                                |
 
 
 

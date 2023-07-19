@@ -9,7 +9,7 @@
 | 論理エンティティ名             | 座席                                                                                                 |
 | 物理エンティティ名             | seats                                                                                                |
 | 作成者                         | Shuji Ushiyama                                                                                       |
-| 作成日                         | 2023/07/17                                                                                           |
+| 作成日                         | 2023/07/19                                                                                           |
 | タグ                           | マスタ                                                                                               |
 
 
@@ -18,15 +18,15 @@
 
 | No. | 論理名                         | 物理名                         | データ型                       | Not Null | デフォルト           | 備考                           |
 |----:|:-------------------------------|:-------------------------------|:-------------------------------|:---------|:---------------------|:-------------------------------|
-|   1 | 座席ID                         | id                             | BIGINT AUTO_INCREMENT          | Yes (PK) |                      |                                |
-|   2 | 座席番号                       | seat_no                        | INT                            | Yes      |                      |                                |
-|   3 | 座席グループ番号               | seat_group_no                  | INT                            | Yes      |                      |                                |
-|   4 | 削除フラグ                     | is_delete                      | TINYINT                        | Yes      | 0                    |                                |
-|   5 | 登録ユーザーID                 | created_id                     | BIGINT                         |          |                      |                                |
-|   6 | 登録タイムスタンプ             | created_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|   7 | 更新ユーザーID                 | updated_id                     | BIGINT                         |          |                      |                                |
-|   8 | 更新タイムスタンプ             | updated_at                     | TIMESTAMP(6)                   |          |                      |                                |
-|   9 | データ・バージョン             | data_version                   | BIGINT                         | Yes      | 1                    |                                |
+|   1 | 座席ID                         | id                             | *自動ID                        | Yes (PK) |                      |                                |
+|   2 | 座席番号                       | seat_no                        | *番号                          | Yes      |                      |                                |
+|   3 | 座席グループ番号               | seat_group_no                  | *番号                          | Yes      |                      |                                |
+|   4 | 削除フラグ                     | is_delete                      | *フラグ                        | Yes      | 0                    |                                |
+|   5 | 登録ユーザーID                 | created_id                     | *ユーザーID                    |          |                      |                                |
+|   6 | 登録タイムスタンプ             | created_at                     | *タイムスタンプ                |          |                      |                                |
+|   7 | 更新ユーザーID                 | updated_id                     | *ユーザーID                    |          |                      |                                |
+|   8 | 更新タイムスタンプ             | updated_at                     | *タイムスタンプ                |          |                      |                                |
+|   9 | データ・バージョン             | data_version                   | *リビジョン                    | Yes      | 1                    |                                |
 
 
 
