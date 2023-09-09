@@ -9,7 +9,7 @@
 | 論理エンティティ名             | 有効回数券                                                                                           |
 | 物理エンティティ名             | valid_tickets                                                                                        |
 | 作成者                         | Shuji Ushiyama                                                                                       |
-| 作成日                         | 2023/07/19                                                                                           |
+| 作成日                         | 2023/09/10                                                                                           |
 | タグ                           | ビュー                                                                                               |
 
 
@@ -25,6 +25,7 @@
 |   5 | 購入回数券枚数                 | ticket_count                   |                                |          |                      |                                |
 |   6 | 利用回数券枚数                 | use_ticket_count               |                                |          |                      |                                |
 |   7 | 有効回数券枚数                 | valid_ticket_count             |                                |          |                      |                                |
+|   8 | 支払日時                       | payment_dt                     |                                |          |                      |                                |
 
 
 
@@ -38,6 +39,7 @@ SELECT
     , T.ticket_count -- 購入回数券枚数
     , IFNULL(T1.use_ticket_count, 0) AS use_ticket_count -- 利用回数券枚数
     , T.ticket_count - IFNULL(T1.use_ticket_count, 0) AS valid_ticket_count -- 有効回数券枚数
+    , T.payment_dt -- 支払日時
 FROM
     buy_tickets T
     LEFT OUTER JOIN (
@@ -55,7 +57,6 @@ FROM
     )
 WHERE
     T.is_delete = 0
-    AND T.payment_dt IS NOT NULL
 
 
 ```

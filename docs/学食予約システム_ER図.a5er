@@ -1,7 +1,7 @@
 ﻿# A5:ER FORMAT:17
 # A5:ER ENCODING:UTF8
 # A5:ER Mk-1 Copyright © 2007 m.matsubara
-# A5:SQL Mk-2 Version 2.18.3 Copyright © 1997 - 2023 m.matsubara
+# A5:SQL Mk-2 Version 2.18.4 Copyright © 1997 - 2023 m.matsubara
 #  https://a5m2.mmatsubara.com
 
 [Manager]
@@ -236,7 +236,7 @@ Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20230621223001
 Position="ユーザー管理",1804,562
-Position="予約管理",639,1667
+Position="予約管理",632,1305
 ZOrder=1
 
 [Entity]
@@ -338,7 +338,7 @@ BkColor=$FFFFFF
 ModifiedDateTime=20230220001010
 Position="システム",1381,367
 Position="メニュー管理",928,777
-Position="予約管理",1410,896
+Position="予約管理",1405,535
 ZOrder=11
 
 [Entity]
@@ -347,8 +347,8 @@ LName=予約
 Comment=
 TableOption=
 Page=予約管理
-Left=1545
-Top=1636
+Left=1540
+Top=1273
 Field="予約ID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
 Field="種別","type","*予約種別","NOT NULL",,"","1:お弁当 2:来店(サッカー部) 3:来店(サッカー部以外)",$FFFFFFFF,""
 Field="利用日","date","*日付","NOT NULL",,"","",$FFFFFFFF,""
@@ -366,7 +366,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20230717133258
-Position="予約管理",1545,1636
+Position="予約管理",1540,1273
 ZOrder=12
 
 [Relation]
@@ -379,7 +379,7 @@ Fields2=user_id
 Cardinarity1=
 Cardinarity2=
 Position="ユーザー管理",0,6951,4528,4361,L,R,""
-Position="予約管理",0,2428,4528,4861,R,R,""
+Position="予約管理",0,2428,4528,4891,R,R,""
 Dependence=0
 Caption=
 PName=
@@ -409,7 +409,7 @@ Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20230514220254
 Position="システム",1184,1583
-Position="予約管理",1818,1395
+Position="予約管理",1811,1035
 ZOrder=14
 
 [Entity]
@@ -614,8 +614,8 @@ LName=座席
 Comment=
 TableOption=
 Page=予約管理
-Left=3133
-Top=1735
+Left=3128
+Top=1373
 Field="座席ID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
 Field="座席番号","seat_no","*番号","NOT NULL",,"","",$FFFFFFFF,""
 Field="座席グループ番号","seat_group_no","*番号","NOT NULL",,"","",$FFFFFFFF,""
@@ -624,7 +624,7 @@ Tag=マスタ
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20230220023335
-Position="予約管理",3133,1735
+Position="予約管理",3128,1373
 Position="システム",2300,1171
 ZOrder=27
 
@@ -634,8 +634,8 @@ LName=予約座席
 Comment=
 TableOption=
 Page=予約管理
-Left=2393
-Top=1739
+Left=2387
+Top=1379
 Field="予約座席ID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
 Field="予約ID","reserve_id","*予約ID","NOT NULL",,"","",$FFFFFFFF,""
 Field="座席ID","seat_id","*座席ID","NOT NULL",,"","",$FFFFFFFF,""
@@ -644,7 +644,7 @@ Tag=関連
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20230220024129
-Position="予約管理",2393,1739
+Position="予約管理",2387,1379
 ZOrder=28
 
 [Relation]
@@ -656,7 +656,7 @@ Fields1=id
 Fields2=reserve_id
 Cardinarity1=
 Cardinarity2=
-Position="予約管理",0,4456,4548,5792,R,R,""
+Position="予約管理",0,4456,4548,5399,R,R,""
 Dependence=0
 Caption=
 PName=
@@ -665,7 +665,7 @@ ModifiedDateTime=20230220024152
 LineMode=0
 Bar1=446
 Bar2=455
-Bar3=579
+Bar3=540
 TermPos1=R
 TermPos2=R
 ZOrder=29
@@ -679,7 +679,7 @@ Fields1=id
 Fields2=seat_id
 Cardinarity1=
 Cardinarity2=
-Position="予約管理",0,5452,4548,4927,R,R,""
+Position="予約管理",0,5452,4548,4665,R,R,""
 Position="システム",0,5452,4548,6923,R,R,""
 Dependence=0
 Caption=
@@ -689,7 +689,7 @@ ModifiedDateTime=20230220024220
 LineMode=0
 Bar1=545
 Bar2=455
-Bar3=493
+Bar3=466
 TermPos1=R
 TermPos2=R
 ZOrder=30
@@ -737,7 +737,7 @@ BkColor=$FFFFFF
 ModifiedDateTime=20230515110132
 Position="システム",2077,1417
 Position="ユーザー管理",1062,1109
-Position="予約管理",772,2703
+Position="予約管理",770,2487
 ZOrder=32
 
 [Entity]
@@ -746,8 +746,8 @@ LName=購入回数券
 Comment=
 TableOption=
 Page=予約管理
-Left=747
-Top=2397
+Left=741
+Top=2052
 Field="購入回数券ID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
 Field="購入者ID","user_id","*ユーザーID","NOT NULL",,"","",$FFFFFFFF,""
 Field="購入日時","buy_dt","*日時","NOT NULL",,"","",$FFFFFFFF,""
@@ -762,7 +762,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20230719200350
-Position="予約管理",747,2397
+Position="予約管理",741,2052
 Position="ユーザー管理",1028,748
 ZOrder=33
 
@@ -776,7 +776,7 @@ Fields2=user_id
 Cardinarity1=
 Cardinarity2=
 Position="ユーザー管理",0,3849,4957,1520,R,R,""
-Position="予約管理",0,5080,4762,4475,R,R,""
+Position="予約管理",0,5080,4762,4455,R,R,""
 Dependence=0
 Caption=
 PName=
@@ -800,7 +800,7 @@ Fields2=ticket_id
 Cardinarity1=
 Cardinarity2=
 Position="ユーザー管理",0,5322,3394,5000,R,R,""
-Position="予約管理",0,5293,4707,4322,R,R,""
+Position="予約管理",0,5293,4707,4402,R,R,""
 Position="システム",0,7896,2104,7811,R,R,""
 Dependence=0
 Caption=
@@ -821,8 +821,8 @@ LName=利用回数券
 Comment=
 TableOption=
 Page=予約管理
-Left=1989
-Top=2124
+Left=1984
+Top=1761
 Field="利用回数券ID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
 Field="予約ID","reserve_id","*予約ID","NOT NULL",,"","",$FFFFFFFF,""
 Field="利用者ID","user_id","*ユーザーID","NOT NULL",,"","",$FFFFFFFF,""
@@ -832,7 +832,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20230716054237
-Position="予約管理",1989,2124
+Position="予約管理",1984,1761
 ZOrder=36
 
 [Relation]
@@ -1165,11 +1165,11 @@ Query=SELECT\n    T.id AS seat_id -- 座席ID\n    , T.seat_no -- 座席番号\n
 LNameByComment=1
 Color=$000000
 BkColor=$FFFFFF
-Position="予約管理",3292,1198
+Position="予約管理",3287,838
 ZOrder=54
 Page=予約管理
-Left=3292
-Top=1198
+Left=3287
+Top=838
 
 [Relation]
 Entity1=seats
@@ -1214,7 +1214,7 @@ Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20230531125735
 Position="システム",666,289
-Position="予約管理",2823,1459
+Position="予約管理",2816,1097
 ZOrder=56
 
 [Entity]
@@ -1246,11 +1246,11 @@ Query=SELECT\n    T.id AS seat_id -- 座席ID\n    , T.seat_no -- 座席番号\n
 LNameByComment=1
 Color=$000000
 BkColor=$FFFFFF
-Position="予約管理",2317,1225
+Position="予約管理",2311,864
 ZOrder=58
 Page=予約管理
-Left=2317
-Top=1225
+Left=2311
+Top=864
 
 [Relation]
 Entity1=calendars
@@ -1335,7 +1335,7 @@ Fields1=id
 Fields2=time_id
 Cardinarity1=
 Cardinarity2=
-Position="予約管理",0,5173,4726,9187,R,R,""
+Position="予約管理",0,5173,4726,9131,R,R,""
 Position="システム",0,8371,1629,2144,R,R,""
 Dependence=0
 Caption=
@@ -1345,7 +1345,7 @@ ModifiedDateTime=20230601140046
 LineMode=0
 Bar1=517
 Bar2=473
-Bar3=919
+Bar3=913
 TermPos1=R
 TermPos2=R
 ZOrder=64
@@ -1359,7 +1359,7 @@ Fields1=id
 Fields2=time_id
 Cardinarity1=
 Cardinarity2=
-Position="予約管理",0,5856,4562,8672,R,R,""
+Position="予約管理",0,5856,4562,8644,R,R,""
 Position="システム",0,8535,1465,2144,R,R,""
 Dependence=0
 Caption=
@@ -1369,7 +1369,7 @@ ModifiedDateTime=20230601114231
 LineMode=0
 Bar1=586
 Bar2=456
-Bar3=867
+Bar3=864
 TermPos1=R
 TermPos2=R
 ZOrder=65
@@ -1380,8 +1380,8 @@ LName=空き状況
 Comment=
 TableOption=
 Page=予約管理
-Left=2752
-Top=518
+Left=2746
+Top=156
 Field="空き状況ID","id","*自動ID","NOT NULL",0,"","",$FFFFFFFF,""
 Field="カレンダーID","calendar_id","*カレンダーID","NOT NULL",,"","",$FFFFFFFF,""
 Field="日付","date","*日付","NOT NULL",,"","",$FFFFFFFF,""
@@ -1402,7 +1402,7 @@ Tag=トランザクション
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20230601142155
-Position="予約管理",2752,518
+Position="予約管理",2746,156
 ZOrder=66
 
 [View]
@@ -1411,15 +1411,15 @@ LName=有効回数券
 Tag=ビュー
 Comment=
 ViewOption=
-Query=SELECT\n    T.id AS buy_ticket_id -- 購入回数券ID\n    , T.user_id -- ユーザーID\n    , T.buy_dt -- 購入日時\n    , T.ticket_id -- 回数券ID\n    , T.ticket_count -- 購入回数券枚数\n    , IFNULL(T1.use_ticket_count, 0) AS use_ticket_count -- 利用回数券枚数\n    , T.ticket_count - IFNULL(T1.use_ticket_count, 0) AS valid_ticket_count -- 有効回数券枚数\nFROM\n    buy_tickets T\n    LEFT OUTER JOIN (\n        SELECT\n            ST.buy_ticket_id\n            , COUNT(*) AS use_ticket_count\n        FROM\n            use_tickets ST\n        WHERE\n            ST.is_delete = 0\n        GROUP BY\n            ST.buy_ticket_id\n    ) T1 ON (\n        T1.buy_ticket_id = T.id\n    )\nWHERE\n    T.is_delete = 0\n    AND T.payment_dt IS NOT NULL\n\n
+Query=SELECT\n    T.id AS buy_ticket_id -- 購入回数券ID\n    , T.user_id -- ユーザーID\n    , T.buy_dt -- 購入日時\n    , T.ticket_id -- 回数券ID\n    , T.ticket_count -- 購入回数券枚数\n    , IFNULL(T1.use_ticket_count, 0) AS use_ticket_count -- 利用回数券枚数\n    , T.ticket_count - IFNULL(T1.use_ticket_count, 0) AS valid_ticket_count -- 有効回数券枚数\n    , T.payment_dt -- 支払日時\nFROM\n    buy_tickets T\n    LEFT OUTER JOIN (\n        SELECT\n            ST.buy_ticket_id\n            , COUNT(*) AS use_ticket_count\n        FROM\n            use_tickets ST\n        WHERE\n            ST.is_delete = 0\n        GROUP BY\n            ST.buy_ticket_id\n    ) T1 ON (\n        T1.buy_ticket_id = T.id\n    )\nWHERE\n    T.is_delete = 0\n\n
 LNameByComment=1
 Color=$000000
 BkColor=$FFFFFF
-Position="予約管理",1474,2240
+Position="予約管理",1467,1879
 ZOrder=67
 Page=予約管理
-Left=1474
-Top=2240
+Left=1467
+Top=1879
 
 [Relation]
 Entity1=valid_tickets
